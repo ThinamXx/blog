@@ -1,1 +1,1 @@
-# thinam.github.io
+# **Thinam's Blog**
