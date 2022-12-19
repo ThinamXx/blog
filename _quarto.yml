@@ -2,14 +2,18 @@ project:
   type: website
 
 website:
-  title: "thinam.github.io"
+  title: "Welcome to my blog!"
   navbar:
     right:
       - about.qmd
+      - icon: linkedin
+        href: https://www.linkedin.com/in/thinam-tamang/
       - icon: github
-        href: https://github.com/
+        href: https://github.com/ThinamXx
+      - icon: gear-fill
+        href: https://linktr.ee/Thinam
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/thinam_
 format:
   html:
     theme: cosmo
