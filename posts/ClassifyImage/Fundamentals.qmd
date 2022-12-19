@@ -1,7 +1,7 @@
 ---
 title: "Fundamentals of Image Classification"
 author: "Thinam Tamang"
-categories: [news]
+categories: [computer vision, image classification]
 date: "2021-12-06"
 ---
 
