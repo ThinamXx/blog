@@ -2,10 +2,10 @@
 title: "Journey of 66DaysOfData in Natural Language Processing"
 author: "Thinam Tamang"
 categories: [news, analysis]
-date: "2021-10-152"
+date: "2021-10-15"
 ---
 
-![](./Images/NLP2.jpg)
+![](./Images/NLP2.jpg)  
 
 ## **Books:**
 - [**Natural Language Processing with Python**](https://www.nltk.org/book/)
