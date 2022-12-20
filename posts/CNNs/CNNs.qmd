@@ -27,7 +27,7 @@ The point of parameterized learning is to define a machine learning model that c
 
 ## VGG16 & VGG19
 
-![](./CNNs/image1.png)
+![](./image1.png)
 
 Fig: A visualization of the VGG architecture.
 
@@ -37,7 +37,7 @@ The VGG network architecture was introduced by Simonyan and Zisserman in their 2
 
 ## ResNet
 
-![](./CNNs/image2.png)
+![](./image2.png)
 
 Fig: **Left:** The original residual module. **Right:** The updated residual module using pre-activation.
 
@@ -45,7 +45,7 @@ The **ResNet** module was introduced by He et al. in their 2015 paper, *Deep Res
 
 ## Inception V3
 
-![](./CNNs/image3.png)
+![](./image3.png)
 
 Fig: The original Inception module used in GoogLeNet.
 
