@@ -5,7 +5,7 @@ categories: [machine learning, data preparation]
 date: "2022-04-03"
 ---
 
-![]./DataPrep.png)
+![](./DataPrep.png)
 
 ### **Outliers**
 
