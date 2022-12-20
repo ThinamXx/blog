@@ -7,9 +7,9 @@ date: "2021-12-31"
 
 ![](./AI.jpg)
 
-# Neural Networks
+## Neural Networks
 
-Neural networks are the building blocks of deep learning systems. A system is called a neural network if it contains a labeled, directed graph structure where each node in the graph performs some computation.
+**Neural networks** are the building blocks of deep learning systems. A system is called a neural network if it contains a labeled, directed graph structure where each node in the graph performs some computation.
 
 ![](./image1.png)
 
