@@ -16,7 +16,7 @@ website:
         href: https://twitter.com/thinam_
 format:
   html:
-    theme: cosmo
+    theme: vapor
     css: styles.css
 
 
