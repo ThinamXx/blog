@@ -16,7 +16,7 @@ website:
         href: https://twitter.com/thinam_
 format:
   html:
-    theme: sketchy
+    theme: lux
     css: styles.css
 
 
