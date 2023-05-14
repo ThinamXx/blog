@@ -1,0 +1,18 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/Git & GitHub/Git.html",
+      "/posts/Attention/Transformer.html",
+      "/posts/WordVectors/WordVectors.html",
+      "/posts/DataEng/DataEngineering.html",
+      "/posts/Dataset/DataPreparation.html",
+      "/posts/Machine/MachineLearning.html",
+      "/posts/Pattern/Pattern.html",
+      "/posts/CNNs/CNNs.html",
+      "/posts/NeuralNetworks/CNN.html",
+      "/posts/ClassifyImage/Fundamentals.html",
+      "/posts/NLP/NLP.html"
+    ]
+  }
+]

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thinam Tamang">
+<meta name="dcterms.date" content="2022-10-23">
+
+<title>Welcome to my blog! - Self-Attention &amp; Transformer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"><i class="bi bi-gear-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Self-Attention &amp; Transformer</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">machine learning</div>
+                <div class="quarto-category">word vectors</div>
+                <div class="quarto-category">word embeddings</div>
+                <div class="quarto-category">transformers</div>
+                <div class="quarto-category">deep learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 23, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><img src="./Trn.png" class="img-fluid"></p>
+<section id="recurrent-models" class="level2">
+<h2 class="anchored" data-anchor-id="recurrent-models"><strong>Recurrent Models</strong></h2>
+<ul>
+<li>The de facto strategy in Natural Language Processing (NLP) is to encode sentences with a bidirectional LSTM models. For example: Source sentence in a translation.</li>
+<li>We should define our output (parse, sentence, summary) as a sequence, and use an LSTm model to generate it.</li>
+<li>Use of attention mechanism allows flexible access to the memory. We use attention mechanism to take a representation from our decoder and look back to treat the encoded representation as a memory, that we can reference and pick out what’s important to any given time.</li>
+</ul>
+<section id="issues-with-recurrent-models" class="level3">
+<h3 class="anchored" data-anchor-id="issues-with-recurrent-models"><strong>Issues with Recurrent Models</strong></h3>
+<ul>
+<li>Linear interaction distance.
+<ul>
+<li>Recurrent Neural Networks (RNN) are unrolled <em>left-to-right</em>.</li>
+<li>RNNs encode linear locality which means the nearby words often affect each other’s meaning in the sentence.</li>
+<li>RNNs take <strong>O(sequence length)</strong> steps for distant words pairs to interact which means that it is hard to learn long-distance dependencies because of the gradient problems.</li>
+<li>Linear order of words is sort of baked into the model because we have to unroll the RNN throughout the sequence and linear order isn’t the right way to think about sentences.</li>
+</ul></li>
+<li>Lack of parallelizability.
+<ul>
+<li>Forward and backward passes have <strong>O(sequence length)</strong> unparallelizable operations.</li>
+<li>Though GPUs can perform a bunch of independent computations at once, a future RNN hidden states can’t be computed in full before past RNN hidden states have been computed.<br>
+</li>
+<li>So, RNNs inhibits training on very large dataset.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="word-windows-model" class="level2">
+<h2 class="anchored" data-anchor-id="word-windows-model"><strong>Word Windows Model</strong></h2>
+<ul>
+<li>Word window models aggregate local context. Number of unparallelizable operations doesn’t increase sequence length.</li>
+<li>Stacking word window layers allows interaction between farther words.</li>
+<li>Maximum interaction distance = <strong>sequence length / window size</strong>. But if the sentences are too long, we will just ignore the long-distance context.</li>
+</ul>
+</section>
+<section id="attention-model" class="level2">
+<h2 class="anchored" data-anchor-id="attention-model"><strong>Attention Model</strong></h2>
+<ul>
+<li>Attention model treats each word’s representation as a <em>query</em> to access and incorporate information for a <em>set of values</em>. Example: In a machine translation system, the set of values were all of the encoder states for the source sentences.</li>
+<li>Number of unparallelizable operations doesn’t increase sequence length.</li>
+<li>Maximum interaction distance is <strong>O(1)</strong> since all the wrods interact at every layer.</li>
+</ul>
+<section id="self-attention-model" class="level3">
+<h3 class="anchored" data-anchor-id="self-attention-model"><strong>Self-Attention Model</strong></h3>
+<ul>
+<li>Attention model operates on <strong>queries, keys</strong>, and <strong>values</strong>.</li>
+<li>In <strong>self-attention models</strong>, the queries, keys, and values are drawn from the same source sentences.</li>
+<li>Since, self-attention mechanism doesn’t build in order information, we need to encode the order of the sentences in our keys, queries, and values. We will consider representing each sequence index as a vector and add it to our inputs in *self-attention** block.</li>
+<li>The position representation vectors are represented through sinusoids. Sinusoidal position representations concatenate functions of varying periods. Learned absolute position representations are flexible to be learned to fit the data on each position.</li>
+</ul>
+</section>
+<section id="barriers-solutions-for-self-attention-model" class="level3">
+<h3 class="anchored" data-anchor-id="barriers-solutions-for-self-attention-model"><strong>Barriers &amp; Solutions for Self-Attention Model</strong></h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Barriers</strong></th>
+<th><strong>Solution</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Doesn’t have an inherent notion of order.</td>
+<td>1. Add position representations to the inputs.</td>
+</tr>
+<tr class="even">
+<td>2. No nolinearities to produce the deep learning magic. But it’s all just the weighted averages.</td>
+<td>2. Apply the same feedforward networks to each self-attention output.</td>
+</tr>
+<tr class="odd">
+<td>3. Need to ensure that we don’t <em>look at the future outputs</em> when predicting a sequence. <em>Like in machine translation or language modeling</em>.</td>
+<td>3. Mask out the future by artificially setting the attention weights to 0.</td>
+</tr>
+</tbody>
+</table>
+<p>The necessities for a self-attention model are as follows:</p>
+<ul>
+<li><strong>Self-attention:</strong>
+<ul>
+<li>The basis of the method or implementation process.</li>
+</ul></li>
+<li><strong>Position representations:</strong>
+<ul>
+<li>Specify the sequence order, since self-attention is an unordered function of its inputs.</li>
+</ul></li>
+<li><strong>Nonlinearities:</strong>
+<ul>
+<li>At the output of the self-attention block.</li>
+<li>Frequently implemented as a simple feedforward network.</li>
+</ul></li>
+<li><strong>Masking:</strong>
+<ul>
+<li>In order to parallelize operations while not looking at the future.</li>
+<li>Keeps information about the future from <em>leaking</em> to the past.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="the-transformer" class="level2">
+<h2 class="anchored" data-anchor-id="the-transformer"><strong>The Transformer</strong></h2>
+<ul>
+<li>We take the dot product of the <em>query-key</em> in one matrix multiplication.</li>
+<li>Then we apply softmax and compute the weighted average with another matrix multiplication.</li>
+<li>We define <strong>multiple attention</strong> heads through multiple <strong>query, key</strong>, and <strong>value</strong> matrices.</li>
+<li>Residual connections are thought to make the loss landscape considerably smoother and thus enhances easier training.</li>
+<li><strong>Layer normalization</strong> is a trick to help models train faster. It cuts down on uninformative variation in hidden vector values by normalizing to unit mean and standard deviation within each layer.</li>
+<li><strong>Scaled Dot Product</strong> attention is necessary when dimensionality <em>d</em> becomes large, dot products between vectors tend to become large and because of this, inputs to the softmax function can be large, making the gradients small.</li>
+<li>Transformers parallelizability allows for efficient pretraining, and have made them the de facto standard.</li>
+</ul>
+</section>
+<section id="word-structure-and-subword-models" class="level2">
+<h2 class="anchored" data-anchor-id="word-structure-and-subword-models"><strong>Word Structure and Subword Models</strong></h2>
+<ul>
+<li>In a language’s vocabulary, we assume that a fixed vocabulary of tens of thousands of words are built from the training dataset. All other <em>novel</em> words which are seen only at test time are mapped to a single unknown token <em>UNK</em>.</li>
+<li>Finite vocabulary assumptions in not an ideal solution in many languages. Many languages exhibit complex <strong>morphology</strong> or word structure which is more word types, each occurring in fewer times.</li>
+</ul>
+</section>
+<section id="byte-pair-encoding-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="byte-pair-encoding-algorithm"><strong>Byte-Pair Encoding Algorithm</strong></h2>
+<p>Subword modeling in NLP encompasses a wide range of methods for reasoning about structure below the word level. The dominant modern paradigm is to learn a vocabulary of parts of words also known as subword tokens. At the training and testing time, each word is split into a sequence of known subwords.</p>
+<p><strong>Byte-pair encoding</strong> is a simple, and effective startegy for defining a subword vocabulary: - Start with a vocabulary containing only characters and an <em>end-of-word</em> symbol. - Using a corpus of text, find the most common adjacent characters known as subwords. - Replace instances of the character pair with the new subword and iterate until the desired vocab size is met.</p>
+<p>This technique was originally used in NLP for machine translation, and now a similar method <strong>WordPiece</strong> is used in pretrained models.</p>
+<section id="pretrained-word-embeddings-models" class="level3">
+<h3 class="anchored" data-anchor-id="pretrained-word-embeddings-models"><strong>Pretrained Word Embeddings &amp; Models</strong></h3>
+<ul>
+<li>Almost all parameters in NLP networks are initialized via <strong>pretraining</strong> which is similar to initializing the <strong>Word2Vec</strong> parameters.</li>
+<li>The pretraining methods hide parts of the input from the model, and train the model to reconstruct those parts.</li>
+<li>This has been exceptionally effective at building strong:
+<ul>
+<li><em>representations of language</em>.</li>
+<li><em>parameter initializations</em> for strong NLP models.</li>
+<li><em>probability distributions</em> over language that we can sample from.</li>
+</ul></li>
+</ul>
+</section>
+<section id="generative-pretrained-transformer-gpt" class="level3">
+<h3 class="anchored" data-anchor-id="generative-pretrained-transformer-gpt"><strong>Generative Pretrained Transformer (GPT)</strong></h3>
+<ul>
+<li>GPT is a decoder only Transformer model with 12 layers.</li>
+<li>GPT contains 768 dimensional hidden states, and 3072 dimensional feed-forward hidden layers.</li>
+<li>A subword vocabulary called Byte-Pair encoding with 40,000 merges.</li>
+<li>GPT models are trained on <em>book corpus</em> and contains over 7000 unique books which contains long spans of contiguous text, for learning long-distance dependencies.</li>
+</ul>
+</section>
+<section id="bidirectional-encoder-representations-from-transformers-bert" class="level3">
+<h3 class="anchored" data-anchor-id="bidirectional-encoder-representations-from-transformers-bert"><strong>Bidirectional Encoder Representations from Transformers (BERT)</strong></h3>
+<p>Devlin et al., 2018 proposed the <strong>Masked LM</strong> objective and released the weights of a pretrained Transformer and labeled <strong>BERT</strong>.</p>
+<p>Some of the details about Masked Language Model for BERT are: - Predict a random 15% of subword tokens. - Replace input word with <em>[MASK]</em> 80% of the time. - Replace input word with a random vocabulary token 10% of the time. - Leave input word unchanged 10% of the time but still predict.</p>
+<p>Some of the details about BERT: - Two models were released: - BERT-base: 12 layers, 768-dim hidden states, 12 attention heads, 110 million params. - BERT-large: 24 layers, 1024-dim hidden states, 16 attention heads, 340 million params. - Trained on: - Books Corpus (800 million words) - English Wikipedia (2500 million words) - Pretraining is expensive and impractical on a single GPU: - BERT was pretrained with 64 TPU chips for a total of 4 days. - TPU are special tensor operations acceleration hardware. - Finetuning is practical and common on a single GPU.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
