@@ -1,0 +1,65 @@
+---
+title: "Data Fundamentals"
+author: "Thinam Tamang"
+categories: [machine learning, data preparation]
+date: "2022-04-03"
+---
+
+![](./DataPrep.png)
+
+### **Outliers**
+
+Outliers are examples that look dissimilar to the majority of examples from the dataset. Dissimilarity is measured by some distance metric, such as **Euclidean distance.** Deleting outliers from the training dataset is not considered scientifically significant, especially in small datasets. In the big data context, outliers don’t typically have a significant impact on the model.
+
+### **Data Leakage**
+
+Data leakage, also known as target leakage, is a problem affecting several stages of the machine learning life cycle, from data collection to model evaluation. Data leakage in supervised learning is the unintentional introduction of information about the target that shouldn’t be made available.
+
+### **What is Good Data**
+
+1.  Good data is informative.
+2.  Good data has good coverage.
+3.  Good data reflects real inputs.
+4.  Good data is unbiased.
+5.  Good data is not a result of a feedback loop.
+
+6.  Good data has consistent labels.
+
+7.  Good data is big enough to allow generalization.
+
+### **Data Augmentation**
+
+The most effective strategy applied to images to get more labeled examples without additional labeling is called data augmentation. The simple operations are flip, rotation, crop, color shift, noise addition, perspective correction, contrast change, and information loss.
+
+**Mixup** is the popular technique of data augmentation which consists of training the model on a mix of the images from the training set. Instead of training the model on the raw images, we take two images and use for training their linear combination:
+
+*mixup_image = t x image*₁ *+ (1 - t) x image₂*
+
+*mixup_target = t x target*₁ *+ (1 - t) x target₂*
+
+### **Oversampling**
+
+Oversampling is a technique to mitigate the class imbalance by making multiple copies of minority class examples. Two popular algorithms that oversample the minority class by creating synthetic examples: Synthetic Minority Oversampling Technique (**SMOTE**) and Adaptive Synthetic Sampling Method (**ADASYN**).
+
+### **Undersampling**
+
+Undersampling is a technique to mitigate the class imbalance by removing some examples from the training set of the majority class based on the property called **Tomek links.** A Tomek link exists between two examples **x<sub>i </sub>**and **x<sub>j </sub>**belonging to two classes if there’s no other examples **x<sub>k </sub>**in the dataset closer to either **x<sub>i </sub>**or **x<sub>j </sub>**than the latter two are to each other.
+
+### **Data Sampling**
+
+In **probability sampling,** all examples have a chance of being selected and it involves randomness. **Nonprobability sampling** is not random and it follows a fixed deterministic sequence of heuristic actions which means that some examples don’t have a chance of being selected, no matter how many samples we build.
+
+In **stratified sampling,** we first divide our dataset into groups called strata and then randomly select examples from each stratum, like in simple random sampling. It often improves the representativeness of the sample by reducing its bias.
+
+### **Data Versioning**
+
+If data is held and updated in multiple places, we might need to keep track of versions. Versioning the data is also needed if we frequently update the model by collecting more data, especially in an automated way. Data versioning can be implemented in several levels of complexity.
+
+**Level 0: data is unversioned.**
+**Level 1: data is versioned as a snapshot at training time.**
+**Level 2: both data and code are versioned as one asset.**
+**Level 3: using or building a specialized data versioning solution.**
+
+### **Data Lake**
+
+A data lake is a repository of data stored in its natural or raw format, usually in the form of object blobs or files. A data lake is typically an unstructured aggregation of data from multiple sources, including databases, logs, or intermediary data obtained as a result of expensive transformations of the original data.

@@ -1,0 +1,113 @@
+---
+title: "Git & GitHub"
+author: "Thinam Tamang"
+categories: [git, github, version control]
+date: "2023-05-14"
+---
+
+![](./R.jpg)
+
+## **The Perfect Commit:**
+
+- Add the right changes.
+- Compose a good commit message.
+- Add the changes to a commit that is only related to the single topic rather than adding all the changes to a single commit. Git staging is vital in selecting the correct files for perfect commit.
+  - `git add -p file`: Commit only a patch of file.
+  - `git commit`: Write a subject with one space and write body of commit.
+
+## **Git Branching Strategies**
+
+- Git allows you to create branches - but it doesn’t tell you how to use them.
+- We need a written best practice of how work is ideally structured in our team - to avoid mistakes and collisions.
+- It highly depends on our team and team size, on our project, and on how we handle releases.
+- It helps to onboard new team members with proper documentation.
+
+## **Integrating Changes & Structuring Releases**
+
+- Mainline Development (“Always Be Integrating”).
+- State, Release, and Feature Branches.
+
+  - Long Running Branches:
+
+    - Exist through the complete lifecycle of the project.
+    - Often, they mirror “stages” in the development life cycle.
+    - Common convention: no direct commits.
+
+  - Short-Lived Branches:
+    - For new features, bug fixes, refactorings, and experiments.
+    - Will be deleted after integration (`merge`/ `rebase`).
+
+**Pull Requests**
+
+- Communicating About and Reviewing Code.
+
+## **Cherry Picking**
+
+- Pick one specific commit and move it to another branch.
+  - `git checkout branch`
+  - `git cherry-pick #hash`
+
+## **Reflog**
+
+- A protocol or journal of every movement of the HEAD pointer.
+- It will be useful in recovering Deleted Commits & Deleted Branches.
+  - `git reflog`
+  - `git reset/branch (branch-name) #hash`
+
+## **Submodules**
+
+- `mkdir lib` & `cd lib` for standards.
+- `git submodule add {url}`
+
+When we create a submodule, the actual contents of the submodule are not stored in the parent repository. The parent repo only stores the submodule remote URL. The information of submodules is stored in .git modules & .git config files.
+
+When we clone a repo with the default `git clone {url}`, the submodules folders, however, are stayed empty. We can get the contents of submodules using the command:
+
+- `git submodule update –init –recursive`
+
+We can achieve the above directly while cloning the repo like this:
+
+- `git clone –recursive –submodules {url}`
+
+## **Search & Find**
+
+- Filtering out commit history
+
+  - By date `–before` / `–after`
+  - By message `–grep`
+  - By author `–author`
+  - By file `–<filename>`
+  - By branch `<branch>`
+
+- `git log branch..main` will show all the commits that are in the main but not in branch which comes in handy in merging.
+
+## **Basic Git Commands**
+
+1. `git init`: Initialize a local Git repository.
+2. `git add <file>`: Add files to staging area.
+3. `git status`: Check status of working tree.
+4. `git commit`: Commit changes in index.
+5. `git push`: Push to remote repository.
+6. `git pull`: Pull latest from remote repository.
+7. `git clone url`: Clone repository into a new directory.
+8. `git checkout branch`: Switch branches or restore working tree files.
+9. `git branch`: List, create, or delete branches.
+10. `git diff`: Show changes between commits, commit and working tree, etc.
+11. `git log`: Show commit logs.
+12. `git stash`: Stash the changes in a dirty working directory away.
+13. `git restore --staged <file>`: Unstage a file while retaining the changes in working directory.
+14. `git reset hash`: Reset current HEAD to the specified state.
+15. `git stash pop`: Remove a single stashed state from the stash list and apply it on top of the current working tree state.
+16. `git stash list`: List the stash entries that you currently have.
+17. `git stash drop`: Remove a single stashed state from the stash list.
+18. `git stash clear`: Remove all the stash entries that you currently have.
+19. `git  remote -v`: List all currently configured remote repositories.
+20. `git remote add origin <url>`: Add a remote repository.
+21. `git remote set-url origin <url>`: Change the url of the remote repository.
+22. `git remote add upstream <url>`: Add a upstream repository.
+23. `git remote set-url upstream <url>`: Change the url of the upstream repository.
+24. `git fetch --all --prune`: Fetch all the remote branches and delete the remote branches that are deleted in the remote repository.
+25. `git reset --hard origin/<branch>`: Reset the current branch to the remote branch.
+26. `git merge <branch>`: Merge a branch into the current branch.
+27. `git rebase <branch>`: Rebase the current branch onto the specified branch.
+28. `git rebase -i <branch>`: Rebase the current branch onto the specified branch and squash commits.
