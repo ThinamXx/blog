@@ -19,7 +19,9 @@ about:
 
 ---
 
-I am a data science, machine Learning, and deep learning practitioner and learner. Solving a problem and gaining insights with the help of machine learning algorithms have always seemed to be superpowers for me. I am here to solve things, Learning a lot in the process. I’m currently working as a Machine Learning Scientist at [**Speechify**](https://speechify.com/).
+🚀 Experienced Machine Learning Scientist with 4+ years of proven expertise in natural language processing, machine learning, deep learning, and data science. Passionate about leveraging artificial intelligence and machine learning to drive innovation, solve complex problems, and gain valuable insights. 💡
+
+Solving problems and gaining insights with the help of machine learning algorithms have always felt like superpowers to me. I am here to apply my skills and knowledge to tackle challenges head-on, continuously learning and growing in the process. 💪
 
 
 #### **Publication**:
@@ -29,7 +31,7 @@ I am a data science, machine Learning, and deep learning practitioner and learne
 
 #### **Experience**:
 
-* **Speechify** | Machine Learning Engineer | Dec 2022 - Present
+* **Speechify** | Machine Learning Scientist | Dec 2022 - Present
 * **RippeyAI** | NLP Engineer | May 2022 - Dec 2022
 * **Genese Solution** | Data Scientist | Feb 2022 - May 2022
 * **Center of Data Mining and Biomedical Informatics** | Research Assistant | Nov 2020 - Feb 2022
