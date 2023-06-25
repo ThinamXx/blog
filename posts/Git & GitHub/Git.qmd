@@ -63,11 +63,13 @@ When we create a submodule, the actual contents of the submodule are not stored 
 
 When we clone a repo with the default `git clone {url}`, the submodules folders, however, are stayed empty. We can get the contents of submodules using the command:
 
-- `git submodule update –init –recursive`
+- Navigate to the root directory of your cloned repository.
+- `git submodule init`
+- `git submodule update`
 
 We can achieve the above directly while cloning the repo like this:
 
-- `git clone –recursive –submodules {url}`
+- `git clone --recurse-submodules {url}`
 
 ## **Search & Find**
 
@@ -111,3 +113,4 @@ We can achieve the above directly while cloning the repo like this:
 26. `git merge <branch>`: Merge a branch into the current branch.
 27. `git rebase <branch>`: Rebase the current branch onto the specified branch.
 28. `git rebase -i <branch>`: Rebase the current branch onto the specified branch and squash commits.
+29. `git merge --allow-unrelated-histories {branch_name}`: Merge two unrelated branches.

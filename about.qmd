@@ -19,9 +19,9 @@ about:
 
 ---
 
-🚀 Experienced Machine Learning Scientist with 4+ years of proven expertise in natural language processing, machine learning, deep learning, and data science. Passionate about leveraging artificial intelligence and machine learning to drive innovation, solve complex problems, and gain valuable insights. 💡
+🚀Experienced Machine Learning Scientist with 4+ years of proven expertise in natural language processing, machine learning, deep learning, and data science. Passionate about leveraging artificial intelligence and machine learning to drive innovation, solve complex problems, and gain valuable insights.
 
-Solving problems and gaining insights with the help of machine learning algorithms have always felt like superpowers to me. I am here to apply my skills and knowledge to tackle challenges head-on, continuously learning and growing in the process. 💪
+Solving problems and gaining insights with the help of machine learning algorithms have always felt like superpowers to me. I am here to apply my skills and knowledge to tackle challenges head-on, continuously learning and growing in the process. 
 
 
 #### **Publication**:
