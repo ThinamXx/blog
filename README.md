@@ -17,3 +17,16 @@ I am a data science, machine Learning, and deep learning practitioner and learne
 * **Genese Solution** | Jr. Data Scientist | Feb 2022 - May 2022
 * **Center of Data Mining and Biomedical Informatics** | Research Assistant | Nov 2020 - Feb 2022
 * **Kharpann Enterprises** | NLP Engineer | Apr 2021 - Aug 2021
+
+Commands to publish:
+```
+git checkout main
+quarto render
+git push
+
+git checkout gh-pages
+git commit -m "..."
+git push origin gh-pages
+
+quarto publish gh-pages
+```
