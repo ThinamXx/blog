@@ -24,9 +24,5 @@ git checkout main
 quarto render
 git push
 
-git checkout gh-pages
-git commit -m "..."
-git push origin gh-pages
-
 quarto publish gh-pages
 ```
