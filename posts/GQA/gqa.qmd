@@ -3,8 +3,9 @@ title: "Grouped Query Attention (GQA)"
 author: "Thinam Tamang"
 categories: [llama, GQA, MQA, MHA, LLMs]
 date: "2024-2-9"
-format: html
-embed-resources: true
+format:
+  html:
+    embed-resources: true
 ---
 
 In this article, we will discuss the Grouped Query Attention. We will start with the introduction of the Grouped Query Attention, then we will discuss the limitations of Multi-Head Attention (MHA) and Multi-Query Attention (MQA), and why we need a Grouped Query Attention. We will also discuss the limitations of the Grouped Query Attention and how to implement GQA in the PyTorch library.

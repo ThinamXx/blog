@@ -3,8 +3,9 @@ title: "Understanding KV Cache"
 author: "Thinam Tamang"
 categories: [llama, KV cache, LLMs]
 date: "2024-2-10"
-format: html
-embed-resources: true
+format:
+  html:
+    embed-resources: true
 ---
 
 In this article, we will discuss the Key-Value cache. We will start with the introduction of the Key-Value cache, then we will discuss the problem, solution, limitations, and implementation of the Key-Value cache. You can also watch the video by [Umar Jamil](https://www.linkedin.com/in/ujamil/) on the Key-Value cache [here](https://www.youtube.com/watch?v=Mn_9W1nCFLo&t=2811s).
