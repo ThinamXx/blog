@@ -3,9 +3,6 @@ title: "Grouped Query Attention (GQA)"
 author: "Thinam Tamang"
 categories: [llama, GQA, MQA, MHA, LLMs]
 date: "2024-2-9"
-format:
-  html:
-    embed-resources: true
 ---
 
 In this article, we will discuss the Grouped Query Attention. We will start with the introduction of the Grouped Query Attention, then we will discuss the limitations of Multi-Head Attention (MHA) and Multi-Query Attention (MQA), and why we need a Grouped Query Attention. We will also discuss the limitations of the Grouped Query Attention and how to implement GQA in the PyTorch library.
@@ -14,8 +11,8 @@ In this article, we will discuss the Grouped Query Attention. We will start with
 Grouped Query Attention (GQA) is the attention mechanism introduced in the [GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints](https://arxiv.org/abs/2305.13245) paper which is a generalization of the Multi-Head Attention (MHA) and Multi-Query Attention (MQA) which uses an intermediate (more than one, less than number of query heads or attention heads) number of key-value heads and achieves quality close to multi-head attention with comparable speed to multi-query attention. GQA is not applied to the encoder self-attention layers because the encoder representations are computed in parallel and the memory bandwith overhead is not a bottleneck.  
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="gqa.png" alt="" width="600">
-    <p style="text-align: center;">Figure 1 taken from GQA paper.</p>
+<img src="gqa.png" alt="" width="600">
+<p style="text-align: center;">Figure 1 taken from GQA paper.</p>
 </div>
 
 As shown in the figure, the MHA has H query, key and value heads. MQA shares single key and value across all query heads and GQA shares single key and value heads for each group of query heads. So, GQA is a generalization of MHA and MQA.
@@ -34,22 +31,22 @@ Grouped Query Attention (GQA) divides the query heads into groups and shares the
 While working on the implementation of the [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/), I implemented the Grouped Query Attention. 
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="gqa1.png" alt="" width="600">
-    <p style="text-align: center;">Figure 2 presents the constructor of GQA.</p>
+<img src="gqa1.png" alt="" width="600">
+<p style="text-align: center;">Figure 2 presents the constructor of GQA.</p>
 </div>
 
 The constructor of GQA is shown in the figure 2. The constructor of GQA initializes the number of query heads, key and value heads, and the 3 parameterized matrices which are trainable. 
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="gqa2.png" alt="" width="600">
-    <p style="text-align: center;">Figure 2 presents the first part of GQA.</p>
+<img src="gqa2.png" alt="" width="600">
+<p style="text-align: center;">Figure 2 presents the first part of GQA.</p>
 </div>
 
 In the forward method of GQA, the query, key and value are multiplied with the parameterized matrices and then we are applying the Rotary Positional Embedding to the query and key. You can learn more about the Rotary Positional Embedding from my article [LLAMA: OPEN AND EFFICIENT LLM NOTES](https://thinamxx.github.io/thinam.github.io/posts/Llama1/llama1.html). Basically, the Rotary Positional Embedding uses a rotation matrix to encode the positional encoding to the attention rather than adding the positional encoding vectors to the query and key as done in Relative Positional Embedding which resolves the essence of extra computation. 
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="gqa3.png" alt="" width="600">
-    <p style="text-align: center;">Figure 3 presents the last part of GQA.</p>
+<img src="gqa3.png" alt="" width="600">
+<p style="text-align: center;">Figure 3 presents the last part of GQA.</p>
 </div>
 
 In the last part of the forward method of GQA as shown in the figure 3, the key and value are repeated for the number of query heads and then the query, key and value are used to compute the attention. I have removed the KV cache from the above code for simplicity but you can see the detailed implementation of enabling and disabling the KV cache in my Llama 2 implementation [here](https://github.com/ThinamXx/Meta-llama/blob/main/llama/llama2.py#L208). 
