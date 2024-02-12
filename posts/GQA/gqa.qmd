@@ -1,7 +1,7 @@
 ---
 title: "Grouped Query Attention (GQA)"
 author: "Thinam Tamang"
-categories: [llama, GQA, MQA, MHA, LLMs]
+categories: [llama, grouped query attention, LLMs]
 date: "2024-2-9"
 ---
 
