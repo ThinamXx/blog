@@ -1,9 +1,8 @@
 # **Thinam's Blog**
 
-**Please visit my blog: https://thinamxx.github.io/thinam.github.io/**
+**Please visit my blog: [https://thinamxx.github.io/blog/](https://thinamxx.github.io/blog/)**
 
 I am a data science, machine Learning, and deep learning practitioner and learner. Solving a problem and gaining insights with the help of machine learning algorithms have always seemed to be superpowers for me. I am here to solve things, Learning a lot in the process. I’m currently working as a Machine Learning Engineer at [**Speechify**](https://speechify.com/).
-
 
 #### **Publication**:
 
