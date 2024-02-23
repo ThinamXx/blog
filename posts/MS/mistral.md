@@ -13,8 +13,10 @@ In the traditional data parallelism approach, each GPU maintains a full copy of 
 
 ### **Model Sharding in Mistral**
 
-Mistral Architecture Details based on [source code](https://github.com/ThinamXx/mistral-src/blob/main/mistral/model.py):
-1. The architecture of Mistral contains an Embedding Layer, Transformer Block that contains [Attention Layers, MOE Layers or FeedForward Layers with or without Normalization Layers], and a Normalization Layer and a Linear Output Layer with Softmax. 
+Mistral Architecture Details based on [source code](https://github.com/ThinamXx/mistral-src/blob/main/mistral/model.py):  
+
+1. The architecture of Mistral contains an Embedding Layer, Transformer Block that contains [Attention Layers, MOE Layers or FeedForward Layers with or without Normalization Layers], and a Normalization Layer and a Linear Output Layer with Softmax.  
+
 2. The Transformer Block is repeated n times where n is the number of layers in the model. So, the basic architecture of Mistral becomes Embedding Layer -> Transformer Block -> Normalization Layer -> Linear Output Layer with Softmax.
 
 <div style="display: flex; flex-direction: column; align-items: center;">
