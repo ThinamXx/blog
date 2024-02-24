@@ -27,7 +27,7 @@ Mistral Architecture Details based on [source code](https://github.com/ThinamXx/
 Model Sharding in Mistral is implemented in such a way that a number of layers of the model are assigned to one GPU, and the rest to other GPUs and so on which basically distributes the model across multiple GPUs. Suppose we have the model with 32 layers and using 4 GPUs, then 8 layers will be assigned to each GPU. The Embedding Layer along with the first 8 layers of Transformer Block (TB) will be assigned to the first GPU, the next 8 layers of TB to the second GPU, the next 8 layers of TB to the third GPU, and the last 8 layers of TB with the Normalization Layer and Linear Output Layer with Softmax will be assigned to the fourth or last GPU.
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-<img src="Sharding.png" alt="" width="600">
+<img src="Sharding.png" alt="" width="900">
 <p style="text-align: center;">Fig b. Model Sharding in Mistral with 32 layers and 4 GPUs.</p>
 </div>
 
