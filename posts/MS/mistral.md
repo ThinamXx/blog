@@ -1,7 +1,7 @@
 ---
 title: "Model Sharding"
 author: "Thinam Tamang"
-categories: [Mistral Sharding, Mistral, LLMs]
+categories: [Model Sharding, Mistral, LLMs]
 date: "2024-2-23"
 ---
 
