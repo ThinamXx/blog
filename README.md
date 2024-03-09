@@ -13,7 +13,7 @@ I am a data science, machine Learning, and deep learning practitioner and learne
 
 * **Speechify** | Machine Learning Engineer | Dec 2022 - Present
 * **RippeyAI** | NLP Developer | May 2022 - Dec 2022
-* **Genese Solution** | Jr. Data Scientist | Feb 2022 - May 2022
+* **Genese Solution** | Data Scientist | Feb 2022 - May 2022
 * **Center of Data Mining and Biomedical Informatics** | Research Assistant | Nov 2020 - Feb 2022
 * **Kharpann Enterprises** | NLP Engineer | Apr 2021 - Aug 2021
 
