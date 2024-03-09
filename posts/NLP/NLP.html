@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.4.547" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Thinam Tamang" />
+<meta name="dcterms.date" content="2021-10-15" />
+
+<title>Welcome to my blog! – Journey of 66DaysOfData in Natural Language Processing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/about.html"> 
+<span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"> <i 
+  class="bi bi-linkedin" 
+  role="img" 
+>
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"> <i 
+  class="bi bi-github" 
+  role="img" 
+>
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"> <i 
+  class="bi bi-gear-fill" 
+  role="img" 
+>
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"> <i 
+  class="bi bi-twitter" 
+  role="img" 
+>
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title-banner">
+    <div class="quarto-title column-body">
+      <h1 class="title">Journey of 66DaysOfData in Natural Language Processing</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">natural language processing</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 15, 2021</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header>
+
+
+<p><img src="./Images/NLP2.jpg" class="img-fluid" /></p>
+<section id="books" class="level2">
+<h2><strong>Books:</strong></h2>
+<ul>
+<li><a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></li>
+<li><a href="https://www.manning.com/books/natural-language-processing-in-action"><strong>Natural Language Processing in Action</strong></a></li>
+<li><strong>Natural Language Processing with PyTorch</strong></li>
+<li><a href="https://www.coursera.org/specializations/natural-language-processing"><strong>Natural Language Processing Specialization</strong></a></li>
+</ul>
+</section>
+<section id="research-papers" class="level2">
+<h2><strong>Research Papers:</strong></h2>
+<ul>
+<li><a href="https://towardsdatascience.com/what-is-teacher-forcing-3da6217fed1c"><strong>Teacher Forcing in Recurrent Neural Networks</strong></a></li>
+<li><a href="https://arxiv.org/abs/1910.10683"><strong>Exploring the Limits of Transfer Learning with a Unified Text to Text Transformer</strong></a></li>
+<li><a href="https://arxiv.org/abs/2004.03705"><strong>Deep Learning Based Text Classification: A Comprehensive Review</strong></a></li>
+<li><a href="http://jalammar.github.io/illustrated-transformer/"><strong>The Illustrated Transformer</strong></a></li>
+<li><a href="https://ruder.io/nlp-imagenet/"><strong>NLP’s ImageNet Moment</strong></a></li>
+<li><a href="http://jalammar.github.io/illustrated-bert/"><strong>The Illustrated BERT, ELMO and Co.</strong></a></li>
+<li><a href="https://lilianweng.github.io/lil-log/2019/01/31/generalized-language-models.html"><strong>Generalized Language Models</strong></a></li>
+<li><a href="https://arxiv.org/abs/1301.3781"><strong>Efficient Estimation of Word Representations in Vector Space</strong></a></li>
+<li><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf"><strong>Distributed Representations of Words and Phrases and their Compositionality</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/glove.pdf"><strong>GloVe : Global Vectors for Word Representation</strong></a></li>
+<li><a href="https://arxiv.org/pdf/1504.00941.pdf"><strong>A Simple Way to Initialize Recurrent Networks of Rectified Linear Units</strong></a></li>
+<li><a href="https://arxiv.org/pdf/1409.0473.pdf"><strong>Neural Machine Translation By Jointly Learning To Align and Translate</strong></a></li>
+<li><a href="https://arxiv.org/abs/1506.07285"><strong>Dynamic Memory Networks for Natural Language Processing</strong></a></li>
+<li><a href="https://arxiv.org/abs/1506.07285"><strong>Dynamic Memory Networks for Natural Language Processing</strong></a></li>
+<li><a href="https://nlp.stanford.edu/~socherr/EMNLP2013_RNTN.pdf"><strong>Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/qi2020stanza.pdf"><strong>Stanza: A Python Natural Language Processing Toolkit for Many Human Languages</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/papadimitriou2020music.pdf"><strong>Learning Music Helps you Read: Using Transfer to Study Linguistic Structure in Language Models</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/tai-socher-manning-acl2015.pdf"><strong>Improved Semantic Representations From Tree Structured Long Short Term Memory Networks</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/StanfordCoreNlp2014.pdf"><strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/SocherGanjooManningNg_NIPS2013.pdf"><strong>Zero Shot Learning Through Cross Modal Transfer</strong></a></li>
+<li><a href="https://arxiv.org/pdf/1611.01368.pdf"><strong>Assessing the Ability of LSTMs to Learn Syntax Sensitive Dependencies</strong></a></li>
+<li><a href="https://nlp.stanford.edu/pubs/chi2020finding.pdf"><strong>Finding Universal Grammatical Relations in Multilingual BERT</strong></a></li>
+</ul>
+</section>
+<section id="notebooks" class="level2">
+<h2><strong>Notebooks:</strong></h2>
+<ul>
+<li><a href="https://github.com/ThinamXx/TopicModeling__NLP/blob/master/Topic%20Modeling%20with%20SVD%20and%20NMF.ipynb"><strong>Topic Modeling with Singular Value Decomposition and Non negative Matrix Formation</strong></a></li>
+<li><a href="https://github.com/ThinamXx/InternetMovieDatabase__NLP/blob/master/IMDB.ipynb"><strong>Sentiment Classification of Internet Movie Reviews Database Reviews</strong></a></li>
+<li><a href="https://github.com/ThinamXx/SemanticAnalysis__LDA..LDIA.git"><strong>Semantic Analysis with LDA, LSA and LDIA</strong></a></li>
+<li><a href="https://github.com/ThinamXx/NeuralNetworks__SentimentAnalysis.git"><strong>Sentiment Analysis of Large Movie Dataset using RNN, CNN and LSTM</strong></a></li>
+<li><a href="https://github.com/ThinamXx/NeuralNetworks__SentimentAnalysis/blob/master/Generating%20Text%20with%20LSTM.ipynb"><strong>Text Generation using Long Short Term Memory or LSTM</strong></a></li>
+<li><a href="https://github.com/ThinamXx/Chatbot__Sequence2Sequence.git"><strong>Chatbot with Sequence to Sequence Networks</strong></a></li>
+<li><a href="https://github.com/ThinamXx/YelpReviews__Analysis.git"><strong>YELP Reviews Sentiment Analysis</strong></a></li>
+<li><a href="https://github.com/ThinamXx/AmazonReviews__Analysis.git"><strong>Amazon Reviews Analysis</strong></a></li>
+<li><a href="https://github.com/ThinamXx/SurnameClassification__PyTorch.git"><strong>Surname Classification with Demographics</strong></a></li>
+<li><a href="https://github.com/ThinamXx/DuplicateQuestions__Recognition.git"><strong>Duplicate Questions Recognition using Trax</strong></a></li>
+</ul>
+<p><strong>Day1 of 66DaysOfData!</strong> - <strong>Natural Language Processing:</strong> Natural Language Processing is a field of Linguistics, Computer Science, and Artificial Intelligence concerned with the interactions between Computers and Human language, in particular how to program computers to process and analyze large amounts of Natural Language Data. Today I am learning Natural Language Processing from very begining. I have read and Implemented the Fundamentals of Natural Language Processing. Here, I have provided the short description of various Libraries, Dependencies and Modules required for Natural Language Processing. I have also presented the Processing of Text such as Removing the Retweet Text, Removing the Hyperlinks and Removing Hashtags. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics mentioned above. Excited about the days ahead !! - Topics: - <strong>Fundamentals of Natural Language Processing</strong></p>
+<p><img src="./Images/Day%201.PNG" class="img-fluid" /></p>
+<p><strong>Day2 of 66DaysOfData!</strong> - <strong>String Tokenization:</strong> In Natural Language Processing, String Tokenization is a process where the string is splitted into Individual words or Individual parts without blanks and tabs. In the same step, the words in the String is converted into lower case. The Tokenize Module from NLTK or Naural Language Toolkit makes very easy to carry out this process. In my Journey of Natural Language Processing, Today I have learned about String Tokenization, Stop word and Punctuation in Natural Language Processing. I have implemented TweetTokenizer and presented the process to remove Stopwords and Punctuation from the Tokenized Tweets here in the Snapshot. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics mentioned above. Excited about the days ahead!! - Topics: - <strong>Fundamentals of Natural Language Processing</strong></p>
+<p><img src="./Images/Day%202.PNG" class="img-fluid" /></p>
+<p><strong>Day3 of 66DaysOfData!</strong> - <strong>Stemming in Natural Language Processing</strong>: Stemming is a process of converting a word to its most General form or Stem. It’s basically the process of removing the suffix from a word and reduce it to it’s root word. It helps in reducing the size of Vocabulary. In my Journey of Natural Language Processing, Today I learned about Stemming in Natural Language Processing which is one of the most important steps while working with Text. I have presented the Implementation of Porter Stemmer, Snowball Stemmer and Lancaster Stemmer here in the Snapshot. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics mentioned above. Excited for coming days!! - <strong>Porter Stemmer:</strong> It is one of the most common and gentle stemmer which is very fast but not very precise. - <strong>Snowball Stemmer:</strong> It’s actual name is English Stemmer is more precise over large Dataset. - <strong>Lancaster Stemmer:</strong> It is very aggressive algorithm. It will hugely trim down the working data which itself has pros and cons. - Topics: - <strong>Fundamentals of Natural Language Processing</strong></p>
+<p><img src="./Images/Day%203.PNG" class="img-fluid" /></p>
+<p><strong>Day4 of 66DaysOfData!</strong> - <strong>Lemmatization in Natural Language Processing</strong>: Lemmatization is the process of grouping together the inflected forms of words so that they can analysed as a single item, identified by the word’s Lemma or a Dictionary form. It is the process where individual tokens from a sentence or words are reduced to their base form. Lemmatization is much more informative than Simple Stemming. Lemmatization looks at the surrounding text to determine a given words’s part of speech where it doesn’t categorize the phrases. In my journey of Natural Language Processing, Today I learned about Lemmatization and it’s simple implementation using Spacy as well NLTK. I have covered the fundamentals of Natural Language Processing such as Tokenization, Stemming and Lemmatization. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics mentioned above. Excited for the days ahead!! - Topics: - <strong>Fundamentals of Natural Language Processing</strong></p>
+<p><img src="./Images/Day%204.PNG" class="img-fluid" /></p>
+<p><strong>Day5 of 66DaysOfData!</strong> - <strong>Natural Language Processing:</strong> Natural Language Processing is a field of Linguistics, Computer Science, and Artificial Intelligence concerned with the interactions between Computers and Human language, in particular how to program computers to process and analyze large amounts of Natural Language Data. As a part of Natural Langauge Processing Journey, I have started reading and Implementing from the Book <strong>Natural Language Processing with Python</strong>. It’s really amazing and I have encountered many basic functions which are unknown to me such as Concordance Function, Similar Function, Common Context Function and a basic Dispersion plot as well. I will be using this Book in my journey. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned above and below. Excited for the days ahead!! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><strong>Day6 of 66DaysOfData!</strong> - In my Journey of Natural Language Processing, Today I have explored about Gutenberg Corpus using NLTK and Python. I have also learned about various Interesting Challenges with proper explanation of each Topics under the hood of Natural Language Processing from the Book <strong>Natural Language Processing with Python</strong>. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned above and below. - <strong>Word Sense Disambiguation</strong>: In Natural Language Processing, Word Sense Disambiguation is an open problem concerned with identifying which sense of a word is used in a sentence. The solution to this issue impacts other Computer related writing such as discourse, improving relevance of Search Engines, Anaphora Resolution, Coherence, and Inference. - <strong>Pronounce Resolution</strong> - <strong>Generating Language Output</strong> - <strong>Machine Translation</strong>: Machine Translation is a sub field of Computational Linguistics that investigates the use of software to translate text or speech from one language to another. - <strong>Spoken Dialog System</strong> - <strong>Textual Entailment</strong> - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%206.PNG" class="img-fluid" /></p>
+<p><strong>Day7 of 66DaysOfData!</strong> - On my Journey of Natural Language Processing, Today I have learned about different Text Corpora and Basic Corpus Functionality defined in NLTK from the Book <strong>Natural Language Processing with Python</strong> . I have also learned about Loading own Corpus, Plotting and Tabulating Distributions and Generating Random Text with Bigrams here. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned above and below. The Topics I have covered are summarized below: - Web and Chat Text - Brown Corpus - Reuters Corpus - Inaugural Address Corpus - Annotated Text Corpora - Corpora in Other Languages - Conditional Frequency Distributions - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%207.PNG" class="img-fluid" /></p>
+<p><strong>Day8 of 66DaysOfData!</strong> - On my Journey of Natural Language Processing, Today I have learned about Processing Raw Text in Natural Language Processing. Basically, I have completed Processing the Text from Electronic Books and from HTML documents from the Book <strong>Natural Language Processing with Python</strong>. Apart from that, I have learned about <strong>WordNet</strong>. The topics I have covered in WordNet are: <strong>The WordNet Hierarchy</strong> and <strong>Semantic Similarity</strong>: Semantic Similarity is a metric defined over a set of Documents or Terms where the idea of distance between items is based on the likeness of their meaning or Semantic content as opposed to Lexicographical Similarity. Example:<strong>Road</strong> and <strong>Driving</strong>. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned above and below. Excited about the days ahead !! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%208.PNG" class="img-fluid" /></p>
+<p><strong>Day9 of 66DaysOfData!</strong> - On my journey of Natural Language Processing, Today I have learned about Text Processing with Unicode and Regular Expressions for Detecting Word Patterns with proper explanations. Within a Program we can manipulate Unicode just like normal strings. Unicode are encoded as stream of bytes. Examples: ASCII, Latin-2, UTF-8. I have also Implemented the Regular Expressions for Detecting the Word Patterns using basic meta characters such as: - Dollar sign ( $ ) matches the characters of the end of word. - Dot symbol ( . ) matches any single character. - Caret symbol ( ^ ) matches the characters of the start of word. - Question mark ( ? ) specifies the previous character is optional. - Plus sign ( + ) means one or more instances of the preceding item. - Sign ( * ) means zero or more instances of the preceding item. - Backslash (  ) means following character is deprived. - Pipe symbol ( | ) specifies the choice between left and right. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned above and below. Excited about the days ahead !! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%209.PNG" class="img-fluid" /></p>
+<p><strong>Day10 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about the various useful applications of Regular Expressions such as Finding Word Stems, Regular Expressions for Tokenizing Text, Normalizing Text such as Stemmers and Lemmatization. I have also read about the issues of Tokenization: Tokenization turns out to be far more difficult task than one might have expected. No single solution works well accross the board. Another issue of Tokenization is the presence of contractions as well such as in didn’t. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned below. Excited about the days ahead !! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%2010.PNG" class="img-fluid" /></p>
+<p><strong>Day11 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have completed all the preliminaries process or techniques required in Natural Language Processing included in the Book <strong>Natural Language Processing with Python</strong>. I have completed the topics such as Tokenization, Stemming, Lemmatization and Text Processing with Regular Expressions from this Book. Apart from that, I have also worked with various Text Corpora such as Brown Corpus, Inaugural Address Corpus, Reuters Corpus and so on. And I have completed first 110 pages of the Book <strong>Natural Language Processing with Python</strong>. I have plotted a simple bar plot using various categories of Brown Corpus presenting the Frequency Distribution of various words appearing inside the Corpus. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned below. Excited about the days ahead !! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%2011%20a.PNG" class="img-fluid" /> <img src="./Images/Day%2011.PNG" class="img-fluid" /></p>
+<p><strong>Day12 of 66DaysOfData!</strong> - <strong>Part of Speech Tagging</strong>: The process of classifying words into their <strong>Parts of Speech</strong> and Labeling them accordingly is known as Part of Speech Tagging which is also known as POS tagging or simply Tagging. The collections of tags used for a particular task is known as Tagset. In my Journey of Natural Language Processing, Today I have learned about Automatic Tagging such as Default Tagger, Regular Expression Tagger and Lookup Tagger along with N-Gram Tagging such as Unigram Tagger, Bigram Tagger and so on. I have also learned about Combining Taggers using backoff parameter. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned below. Excited about the days ahead !! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%2012.PNG" class="img-fluid" /></p>
+<p><strong>Day13 of 66DaysOfData!</strong> - <strong>Supervised Classification</strong>: Classification is the process of choosing the correct class label for a given input. The Classification is said to be Supervised Classification if it is built based on training corpora containing the correct label for each input. One common example of Classification is deciding whether an Email is spam or not. In my Journey of Natural Language Processing, Today I have learned about Supervised Classification. I have covered the topics such as Choosing Right Features, Document Classification, Gender Identification, Part of Speech Tagging using Naive Bayes Classifier and Decision Trees Classifier under the hood of Supervised Classification of Natural Language Processing. I have presented the basic Implementation of Naive Bayes Classifier in Document Classification. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned below. Excited about the days ahead!! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%2013.PNG" class="img-fluid" /></p>
+<p><strong>Day14 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about Sequence Classification, Sentence Segmentation and various Evaluation methods under the hood of Natural Language Processing. I have covered the Fundamental Topics such as Test Data, Accuracy measure, Precision and Recall, Confusion Matrices, Cross validation, Decision Trees and Naive Bayes with proper implementations which are so helpful for my understanding. I have been in this Journey for 2 weeks and I have covered all the fundamentals which are so relevant in Natural Language Processing. I have been following the <strong>Natural Language Processing with Python</strong> Book and it really helps me a lot. Now, I will be focusing more on Implementations so that I will be following the course of Fastai on Natural Language Processing. I have implemented the Naive Bayes Classifier in Text Corpus and I hope you can gain insight about the Implementation of Naive Bayes. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Book mentioned below. Excited about the days ahead!! - Book: - <a href="https://www.nltk.org/book/"><strong>Natural Language Processing with Python</strong></a></p>
+<p><img src="./Images/Day%2014%20a.PNG" class="img-fluid" /></p>
+<p><strong>Day15 of 66DaysOfData!</strong> - <strong>Singular Value Decomposition or SVD:</strong> The words that appear most frequently in one topic would appear less frequently in the other, otherwise that word wouldn’t make a good choice to separate out the two topics. Therefore, the Topics are Orthogonal. The SVD algorithm factorizes a matrix into one matrix with orthogonal columns and one with orthogonal rows along with diagonal matrix which contains the relative importance of each factor. - <strong>NonNegative Matrix Factorization or NMF:</strong> Non Negative Matrix Factorization (NMF) is a factorization or constrain of non negative dataset. NMF is non exact factorization that factors into one short positive matrix. - <strong>Topic Frequency Inverse Document Frequency or TFIDF:</strong> TFIDF is a way to normalize the term counts by taking into account how often they appear in a document and how long the document is and how common or rare the document is. - In my journey of Natural Language Processing, Today I have learned and Implemented about SVD, NMF and TFIDF in Topic Modeling Project. I have captured just the overview of the implementations here. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Course mentioned below. Excited about the days ahead!! - Course: <a href="https://docs.fast.ai/"><strong>Fastai</strong></a></p>
+<ul>
+<li><a href="https://github.com/ThinamXx/NaturalLanguageProcessing_NLP/blob/master/Topic%20Modeling%20with%20SVD%20and%20NMF.ipynb"><strong>Topic Modeling with SVD and NMF</strong></a></li>
+</ul>
+<p><img src="./Images/Day%2015.PNG" class="img-fluid" /> <img src="./Images/Day%2015.PNG" class="img-fluid" /></p>
+<p><strong>Day16 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about Implementations of Natural Language Processing from <strong>Fastai</strong> course which has been published recently. As the Fastai course primarily focuses on the Coding part and follows the top down aspect of Learning and Teaching. It’s bit complicated to learn than other courses. Fastai’s API is really amazing and powerful as well. I learned the basic steps of Natural Language Processing with Fastai such as Word Tokenization, Subword Tokenization, Numericalization, and Preparing TextBlock and DataBlock. I am currently working on Sentiment Analysis of IMDB reviews using Fastai. I have shared the Implementations of the Word Tokenization, Subword Tokenization, Numericalization and process to prepare the TextBlock and DataBlock with Fastai here in the Snapshots. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Course mentioned below. Excited about the days ahead!! - Course: <a href="https://docs.fast.ai/"><strong>Fastai</strong></a> - <a href="https://github.com/ThinamXx/InternetMovieDatabase__NLP/blob/master/IMDB.ipynb"><strong>Sentiment Classification of Internet Movie Database reviews</strong></a></p>
+<p><img src="./Images/Day%2016.PNG" class="img-fluid" /></p>
+<p><strong>Day17 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about the Implementation of Fastai in preparing a Sentiment Classifier Model. I have prepared a Model using Fastai API which can classify Sentiment of Internet Movie Database reviews i.e. classifying the Positive or Negative Sentiment. Fastai’s API is really powerful and effective so that the Model can classify the Sentiment of Internet Movie Database reviews with above 90% accuracy in just few lines of code. I have learned about Word Tokenization, Subword Tokenization, Numericalization, TextBlock and DataBlock API and Training the Classifier Model using Fastai.I have presented the snapshot of the Implementation of Fastai API in preparing the Language Model and Training the Model. I have also presented the Implementation of Fastai API in preparing the Classifier Model using the Language Model and also the concept of unfreezing the Model. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Course mentioned below. Excited about the days ahead!! - Course: <a href="https://docs.fast.ai/"><strong>Fastai</strong></a> - <a href="https://github.com/ThinamXx/InternetMovieDatabase__NLP/blob/master/IMDB.ipynb"><strong>Sentiment Classification of Internet Movie Database reviews</strong></a></p>
+<p><img src="./Images/Day%2017.PNG" class="img-fluid" /></p>
+<p><strong>Day18 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read a Topic of Natural Language Processing in the Book <a href="https://d2l.ai/"><strong>Dive into Deep Learning</strong></a> by Aston Zhang. Here, I have covered the Topics such as Text Processing, Machine Translation, Natural Language Processing Pretraining and Word Embedding. The information and explanations were great and the code implementation is in MXNET. I am not quite familiar with MXNET framework so I have just presented a small Snapshot here. Apart from that, Today I have read a very small part of the book <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> by Hobson Lane. I am so much thankful to Anthony Camarillo for sharing this book with me. And I will give continuation with this Book <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a>. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days ahead!! - Books: - <a href="https://d2l.ai/"><strong>Dive into Deep Learning</strong></a> - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2018.PNG" class="img-fluid" /></p>
+<p><strong>Day19 of 66DaysOfCode!</strong> - In my journey of Natural Language Processing, Today I have read and implemented the First chapter of the Book <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a>. In this chapter, I have covered the Topics such as Natural Language Processing and the Magic, Regular Expressions, Finite State Machine or FSM concept, Word order and Grammar, simple NLP Chatbot Pipeline and Natural Language IQ. I have presented the simple Chatbot using Regular Expressions and Finite State Machine or FSM concept. Basically, I will be working on much advanced Chatbots using Neural Networks in coming days. I hope you will also google out the FSM concept in NLP and also the Implementation of Regular Expressions in FSM from here. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days ahead!! - Books: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2019.PNG" class="img-fluid" /></p>
+<p><strong>Day20 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read a couple of topics under the hood of Natural Language Processing such as Tokenized Phrase, Dot Product in Natural Language Processing, Bag of Words and Overlapping, Token improvement with Regex which is apart from Regular Expressions, Contractions, Extending Vocabulary with NGrams. I have also read and implemented the Regex Tokenizer, Tree Bank Tokenizer and Casual Tokenizer. Actually I am continuing my learning Journey with a Book <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> and lots of the preprocessing concepts which I have already read are coming along my way. I prefer to go through the concepts again because I don’t want to skip any topics from this book. Although the concepts might match along the way I won’t repeat the same implementation in any of my Snapshots. I have presented the Implementation of Regex Tokenizer, Tree Bank Tokenizer, Casual Tokenizer and NGrams here in the Snapshots. These Tokenization steps are more better than Traditional Tokenization steps using Regular Expressions. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days ahead!! - Books: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2020.PNG" class="img-fluid" /></p>
+<p><strong>Day21 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and implemented about Stopwords, Stemming, Lemmatization and Sentiment Analysis using VADER Approach which is the Algorithm composed by human and also the Machine Learning Approach with the help of Naive Bayes Classifier. I have completed the first 2 chapters of the book, <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> and it is helping me a lot along my Journey. I have presented the Implementation of VADER Approach in Sentiment Analysis along with Naive Bayes Classifier and I have also included the Implementation of Casual Tokenizer in the Movies Dataset. I hope you will gain insights about the Implementation of VADER Approach and Naive Bayes in Sentiment Analysis. Actually, VADER Approach is not as efficient as Machine Learning Approach such as Naive Bayes Classifier. I hope you will spend some time in learning about Naive Bayes in Sentiment Analysis along with VADER Approach. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2021.PNG" class="img-fluid" /></p>
+<p><strong>Day22 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Bag of Words, Vectorizing concept, Vector Spaces, Cosine Similarity, Zipf’s Law and Inverse Frequency concept, Text Modeling, TFIDF, Relevance Ranking and Okapi BM25 concept. I have completed the first three chapters of the book <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> and this chapter primarily focuses on the concept of Vectorizing the Tokens which are obtained after Tokenization using TFIDF Vectorizer. Text Vectorization is the process of converting Text into Numerical representation. I have also read and Implemented the concept of Cosine Similarity under the hood of Natural Language Processing. I have presented the Implementation of TFIDF Vectorizer and also the process of Tokenizing the Text Documents and removing the Stopwords. I have also Implemented the Cosine Similarity using Numpy and pure Python as well in this Snapshot. I hope you will gain insights about Text Vectorization and Tokenization from here. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2022.PNG" class="img-fluid" /></p>
+<p><strong>Day23 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have started learning about Semantic Analysis. I have read and implemented about Topic Vectors, Algorithms for Scoring Topics and Semantic Analysis such as Latent Semantic Analysis <strong>LSA</strong>, Linear Discriminant Analysis <strong>LDA</strong> and Latent Dirichlet Allocation <strong>LDIA</strong>. Today, I primarily focused on reading and Implementing about Linear Discriminant Analysis <strong>LDA</strong>. LDA is one of the most straight forward and fast Dimension Reduction and Classification Models. In Natural Language Processing, Semantic Analysis is the process of relating the Syntactic structures from the levels of Phrases, Clauses, Sentences and Paragraphs to the level of the writing as a whole and to their Language dependent meanings. I have presented the Implementation of LDA’s working Principal which states that Computing the centroid of TFIDF vectors for each side of the binary Class here in the Snapshot. I hope you will gain insights about Implementation of LDA Classifier and creating NLP Pipeline of Tokenizer and Vectorizer from here. And I hope you will spend some time in learning about Semantic Analysis as well. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days ahead !! - Books: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2023.PNG" class="img-fluid" /></p>
+<p><strong>Day24 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented Latent Semantic Analysis “LSA”, Singular Value Decomposition “SVD”, Principal Component Analysis “PCA”, Truncated SVD and Latent Dirichlet Allocation “LDIA”. I have primarily focused on reading and Implementing LSA and LDIA for Semantic Analysis. LSA works well with Normalized TFIDF Vectors whereas LDIA works well with raw Bag of Words “BOW” Count Vectors. Semantic Analysis is the process of relating the Syntactic structures from the levels of Phrases, Clauses, Sentences and Paragraphs to the level of the writing as a whole and to their Language dependent meanings. I have presented the Implementation of Linear Discriminant Analysis “LDA” while working with TFIDF Vectors and BOW Count Vectors here in the Snapshot. I hope you will gain insights about the Implementation of LDA Classifier along with LDIA Topic Vectors and BOW count Vectors. Incase you want to see my Notebook, I have presented the overall Implementation of Semantic Analysis with LSA, LDA and LDIA with proper Documentation here: Excited about the days to come!! - Books: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/SemanticAnalysis__NLP.git"><strong>Semantic Analysis</strong></a></p>
+<p><img src="./Images/Day%2024.PNG" class="img-fluid" /></p>
+<p><strong>Day25 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have started learning and Implementing Neural Networks and Deep Learning for Natural Language Processing. I have completed the Implementation of LSA and LDIA in Semantic Analysis along with LDA. I have read the topics such as Neural Networks and Perceptrons, Gradients, Local and Global Minimum and Backpropagation under the hood of Neural Networks and Deep Learning. Actually, I have primarily focused on reading the topics needed to understand the Neural Networks and Deep Learning rather than Implementing the concepts. I have presented the Simple workflow of Neural Networks using Keras API. I will be Implementing the Keras API in Natural Language Processing from today. I hope you will also spend some time to learn the basic topics which I have mentioned above to understand the Neural Networks and Deep Learning. Excited to learn and Implement Neural Networks for NLP in coming days!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2025.PNG" class="img-fluid" /></p>
+<p><strong>Day26 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Word Vectors, Softmax Function, Negative Sampling, Document Similarity with Doc2Vec and Google’s Word2vec, GloVe and Facebook’s FastText Models which were pretrained on Billions of Text Data. I have primarily focused on learning and Implementing the Word2vec pretrained Model today. I am continuing my learning journey along with the book, <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a>. Word2vec is a Model for Natural Language Processing. The Word2vec Algorithm uses a Neural Network Model to learn Word associations from a large corpus of text. Once Word2vec Model is trained, It can detect Synonymous words or suggest additional words for a partial sentence. Word2vec is a group of related Models that are used to produce Word Embeddings. I have presented the Implementation to access the Google’s Word2vec pretrained Model and it’s basic Functions and the process to create own Domain Specific Word2vec Model. I have also presented the Implementation of Doc2vec Model here in the Snapshot. I hope you will also spend so time to learn about Word2vec pretrained Model. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a></p>
+<p><img src="./Images/Day%2026.PNG" class="img-fluid" /></p>
+<p><strong>Day27 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Convolutional Neural Network for Natural Language Processing. I have covered the topics such as CNN building blocks, Step size or Stride, Filter Composition, Padding, Convolutional Pipeline, Learning, Narrow Windows and Implementing the Keras API under the hood of Convolutional Neural Network for NLP. I have started working on the Sentiment Analysis of Large Movie Review Dataset which was compiled for the 2011 paper “Learning Word Vectors for Sentiment Analysis”. Since, It is a very large Dataset, I have used just the subset of the Dataset. I will be Implementing CNN for this Project. I have presented the basic Implementations of approaching the Dataset such as Importing the Dependencies, Processing the Dataset with Tokenization and Google News pretrained Model Vectorization and Splitting the Dataset into Training set and Test set. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come !! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/ConvolutionalNeuralNetwork__andNLP.git"><strong>Sentiment Analysis of Large Movie Dataset</strong></a></p>
+<p><img src="./Images/Day%2027b.PNG" class="img-fluid" /> <img src="./Images/Day%2027a.PNG" class="img-fluid" /></p>
+<p><strong>Day28 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Convolutional Neural Network for Natural Language Processing. I have covered the topics such as Convolutional Neural Network Architecture, Pooling, Dropout, CNN parameters, Optimization and Training CNN Model under the hood of Convolutional Neural Network for Natural Language Processing. I have presented the overall Implementation of Convolutional Neural Network here in the Snapshot. I have also presented the short info of all the parameters mentioned in the CNN Model and the process of Compiling and Training the Model as well. I hope you will gain insights about the Implementation of CNN Model in Sentiment Analysis. Actually, It is the continuation of yesterday’s Snapshots. I hope you will also spend some time working on it. I have completed working on the Sentiment Analysis of Large Movie Review Dataset. I have prepared a Model using Convolutional Neural Network which can classify the Sentiment of Text Data. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/ConvolutionalNeuralNetwork__andNLP.git"><strong>Sentiment Analysis of Large Movie Dataset</strong></a></p>
+<p><img src="./Images/Day%2028.PNG" class="img-fluid" /></p>
+<p><strong>Day29 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Simple Recurrent Neural Network as well as Bidirectional Recurrent Neural Network. Here, I have covered the topics such as Backpropagation through Time, Hyperparameters, Statefulness, Bidirectional Networks and various other topics similar to Convolutional Neural Network mentioned in the previous Snapshot. I have Implemented the Recurrent Neural Network in the same Large Movie Review Dataset to predict the Sentiment of Text Data. I have presented the overall Implementation of RNN Model here in the Snapshot. I have also presented the short info of all the Parameters and codes mentioned here in the Model. I hope you will gain some insights about the Implementation of RNN Model in Sentiment Analysis. Although the Implementation of RNN Model is not so appreciable, I hope you will spend some time understanding the working principle of RNN and working on the same. I have completed working on the Sentiment Analysis of Large Movie Review Dataset using Simple RNN as well as Bidirectional RNN. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/ConvolutionalNeuralNetwork__andNLP.git"><strong>Sentiment Analysis of Large Movie Dataset</strong></a></p>
+<p><img src="./Images/Day%2029.PNG" class="img-fluid" /></p>
+<p><strong>Day30 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Long Short Term Memory or LSTM. I have covered the topics such as LSTM working principle, Backpropagation through time, Keras API and various other topics similar to CNN and RNN as mentioned in the previous Snapshots under the hood of NLP. Actually, I have primarily focused on Implementing the LSTM Model in the same Large Movie Review Dataset to compare the effectiveness of CNN, RNN and LSTM on Sentiment Analysis of Text Data. Long Short Term Memory or LSTM is an Artificial Recurrent Neural Network or RNN architecture used in the field of Deep Learning. Unlike standard Feedforward Neural Networks, LSTM has Feedback connections. I have presented the Simple Implementation of Long Short Term Memory or LSTM Model in the same Large Movie Review Dataset. I have also presented the short info of all the Parameters and codes mentioned here in the Model. I hope you will gain some insights about the Implementation of LSTM Model in Sentiment Analysis. I have completed working on the same with LSTM Model. Excited about the days ahead!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/ConvolutionalNeuralNetwork__andNLP.git"><strong>Sentiment Analysis of Large Movie Dataset</strong></a></p>
+<p><img src="./Images/Day%2030.PNG" class="img-fluid" /></p>
+<p><strong>Day31 of 66DaysOfData!</strong> - Long Short Term Memory or LSTM: Long Short Term Memory or LSTM is an Artificial Recurrent Neural Network or RNN architecture used in the field of Deep Learning. Unlike standard Feedforward Neural Networks, LSTM has Feedback connections. It can not only process single data points, but also entire sequences of data such as Speech or Video. LSTM is applicable for Text Generation as well. Today I have read and Implemented about Generating the Text using Long Short Term Memory or LSTM. I have prepared a Model using LSTM which generates the Text similar to William Shakespeare’s writing. I have used the Gutenberg Corpus which contains the 3 plays of Shakespeare to train the Neural Network. I have presented the Implementation of LSTM Model as well as the Implementation of Keras API in Text Generation here in the Snapshot. I have also presented the Snapshot of Generated Text with the help of LSTM Model. I have completed working on Generating Text with the help of LSTM Model. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/ConvolutionalNeuralNetwork__andNLP.git"><strong>Sentiment Analysis of Large Movie Dataset</strong></a></p>
+<p><img src="./Images/Day%2031a.PNG" class="img-fluid" /> <img src="./Images/Day%2031b.PNG" class="img-fluid" /></p>
+<p><strong>Day32 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented the topics such as Encoder and Decoder Architecture in Sequence to sequence Models, Thought Vector, Decoding Thought using LSTM, Sequence Encoder and Keras Functional API in assembling Sequence to Sequence Pipeline under the hood of Natural Language Processing. I have started working on building a Chatbot using Sequence to sequence Neural Networks and Keras Functional API. I have presented the simple Implementation of processing the Text Corpus and few steps to make the Text Data ready to train the Sequence to sequence Chatbot here in the Snapshot. I will be using the Cornell Dialog Dataset for training the Chatbot. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/Chatbot.git"><strong>Chatbot with Sequence to sequence Networks</strong></a></p>
+<p><img src="./Images/Day%2032.PNG" class="img-fluid" /></p>
+<p><strong>Day33 of 66DaysOfData!</strong> - Sequence to Sequence Model: Sequence to Sequence Neural Networks can be built with a modular and reusable Encoder and Decoder Architecture. The Encoder Model generates a Thought Vector which is a Dense and fixed Dimension Vector representation of the Data. The Decoder Model use Thought Vectors to generate Output Sequences. In my journey of Natural Language Processing, Today I have read and Implemented various topics under Sequence to Sequence Networks. I have continued working on the Chatbot using Sequence to Sequence Learning. I have used the Keras Functional API and Cornell Dialog Dataset for Training the Model. I have presented the Implementation of Thought Encoder and Thought Decoder using Keras Functional API here in the Snapshot. I have also presented the techniques for Training the Model and Generating the Response Sequences here. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! - Book: - <a href="https://g.co/kgs/U82Sem"><strong>Natural Language Processing in Action</strong></a> - <a href="https://github.com/ThinamXx/Chatbot.git"><strong>Chatbot with Sequence to sequence Networks</strong></a></p>
+<p><img src="./Images/Day%2033.PNG" class="img-fluid" /></p>
+<p><strong>Day34 of 66DaysOfData!</strong> - In my Journey of Natural Language Processing, Today I have read about Sentence Segmentation, Named Entity Recognition, Understanding Chatbot Approaches and few NLP Pipelines under the hood of Natural Language Processing. I have also started reading the book <strong>Natural Language Processing with PyTorch</strong>. Actually, I had never worked with <strong>PyTorch</strong> and never found any particular reason to start with <strong>PyTorch</strong>. But, Today I got motivated to start <strong>Natural Language Processing with PyTorch</strong>. I will be reading and Implementing <strong>Natural Language Processing with PyTorch</strong> from today. I have presented the simple Implementation of AIML Bot and the Vectorization concept here in the Snapshot. I am fond of revisiting the small concepts again and again so that I won’t get stuck while Implementing in real problems. I am so excited to start <strong>Natural Language Processing with PyTorch</strong>. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! Book: - <strong>Natural Language Processing with PyTorch</strong></p>
+<p><img src="./Images/Day%2034a.PNG" class="img-fluid" /> <img src="./Images/Day%2034b.PNG" class="img-fluid" /></p>
+<p><strong>Day35 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented The Supervised Learning Paradigm, Computational Graphs, PyTorch Basics and various NLP fundamentals such as Tokenization, Lemmatization, Tagging and Semantics. I have also read and Implemented about Activation Functions such as Sigmoid, Tanh, ReLU, Softmax and Loss Functions such as Mean Squared Error and Cross Entropy under the hood of <strong>Natural Language Processing with PyTorch</strong>. I have presented the Implementation of PyTorch in various Activation Functions and Loss Functions along with few preliminaries for Understanding and working with PyTorch here in the Snapshots. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! Book: - <strong>Natural Language Processing with PyTorch</strong></p>
+<p><img src="./Images/Day%2035a.PNG" class="img-fluid" /> <img src="./Images/Day%2035b.PNG" class="img-fluid" /></p>
+<p><strong>Day36 of 66DaysOfData!</strong> - Regularization: In Machine Learning, Regularization is the process of adding Information in order to solve a well posed problems or to prevent Overfitting. In my journey of Natural Language Processing, Today I have read and Implemented about Model Selection approaches, Choosing Loss Functions, Choosing Optimizers, Gradient Based Supervised Learning, Evaluation Metrics, Regularization and Early Stopping under the hood of <strong>Natural Language Processing with PyTorch</strong>. I have started working on the YELP Reviews Dataset and the Neural Networks will be Implemented using PyTorch. I have presented some Data Preprocessing Techniques which I have Implemented while working with YELP Reviews Dataset here in the Snapshot. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/YELPReviews__PyTorch.git"><strong>YELP Reviews Sentiment Analysis</strong></a></p>
+<p><img src="./Images/Day%2036.PNG" class="img-fluid" /></p>
+<p><strong>Day37 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about PyTorch’s Data Representation, The Vocabulary Class, The Vectorizer Class and The DataLoader Class under the hood of <strong>Natural Language Processing with PyTorch</strong>. I am continuing my journey along with the book <strong>Natural Language Processing with PyTorch</strong>. - <strong>The Vocabulary Class:</strong> The Vocabulary Class not only manages the Bijection i.e Allowing user to add new Tokens and have the Index auto increment but also handles the special token called UNK which stands for Unknown. By using the UNK Token, It will be easy to handle Tokens at Test time that were never seen in Training Instance. - <strong>The Vectorizer Class:</strong> The second stage of going from a Text Dataset to a vectorized minibatch is to iterate through the Tokens of an Input Data Point and convert each Token to its Integer form. The result of this iteration should be a Vector. Because this Vector will be combined with Vectors from other Data points, there is Constraint that the Vectors produced by the Vectorizer should always have the same length. - <strong>The DataLoader Class:</strong> The Final step of Text to Vectorized minibatch pipeline is to actually group the Vectorized Datapoints. Because grouping into mini batches is a viatal part of Training the Neural Networks, PyTorch provides a built in class called DataLoader for coordinating the Process. - I have presented the Implementation of Dataset Class using PyTorch here in the Snapshot. I have been working on the Implementation of Dataset Class, Vectorizer Class and DataLoader Class and I feel quite overwhelmed with the complexity of PyTorch because I am not familiar with PyTorch Framework. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/YELPReviews__PyTorch.git"><strong>YELP Reviews Sentiment Analysis</strong></a>.</p>
+<p><img src="./Images/Day%2037a.PNG" class="img-fluid" /> <img src="./Images/Day%2037b.PNG" class="img-fluid" /></p>
+<p><strong>Day38 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Perceptron Classifier, The Training Routine Class using PyTorch’s Implementation, The Training Loop, Evaluation, Inference and Inspection of the Model prepared using PyTorch under the hood of “Natural Language Processing with PyTorch”. I am continuing my journey along with the book, <strong>Natural Language Processing with PyTorch</strong>. Today, I have continued working with YELP Review Dataset for Sentiment Analysis using PyTorch. I have presented the simple Implementation of PyTorch in Training the Classifier Model along with the process of Instantiating the Dataset, Model, Loss, Optimizer and Training State here in the Snapshots. Actually, It is the continuation of yesterday’s Snapshot. I hope you will gain some insights and work on the same. I hope you will also spend some time learning the Topics from the Books mentioned below. Excited about the days to come!! Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/YELPReviews__PyTorch.git"><strong>YELP Reviews Sentiment Analysis</strong></a>.</p>
+<p><img src="./Images/Day%2038a.PNG" class="img-fluid" /> <img src="./Images/Day%2038b.PNG" class="img-fluid" /></p>
+<p><strong>Day39 of 66DaysOfData!</strong> - **Long Short Term Memory or LSTM Model: Long Short Term Memory or LSTM is an Artificial Recurrent Neural Network or RNN architecture used in the field of Deep Learning. LSTM has Feedback connections. It can not only process single data points, but also entire sequences of data such as Speech or Video. In my journey of Natural Language Processing, Today I have started working on new Text Dataset i.e Amazon Electronics Reviews Dataset for Analysis using only TensorFlow and TensorBoard. I will be working on the same until I finish it completely. Apart from that, Today I have watched some videos on YouTube and read some Notebooks in Kaggle under the hood of Natural Language Processing. I have presented the overall Implementation of TensorFlow and TensorBoard in Processing the Data such as Tokenization and Encoding and the techniques for preparing LSTM Model here in the Snapshots. I hope you will gain some insights and work on the same. Excited about the days to come!! - <a href="https://github.com/ThinamXx/AmazonReviews__Analysis.git"><strong>Amazon Reviews Analysis</strong></a></p>
+<p><img src="./Images/Day%2039a.PNG" class="img-fluid" /> <img src="./Images/Day%2039b.PNG" class="img-fluid" /></p>
+<p><strong>Day40 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have continued working on yesterday’s Notebook which was of Text Dataset i.e Amazon Electronics Reviews Dataset for Analysis using only TensorFlow and TensorBoard. Actually, I spent most of my time in Training the Model and I tried to optimize the Model to increase the speed of Training but still the Training procedure took most part of my time using GPU as well. Apart from that, Today I have spent some time working on Greedy Programming Algorithms. Actually I got a chance to interview from one of the Tech Giants as well. I had prepared a Model using LSTM which was trained on Amazon Reviews Dataset. This Snapshot is the continuation of yesterday’s Snapshots. So, I have presented some basic workflow of Model Evaluation and deploying the Trained Model on unseen Text Data for Analysis. I have also presented the simple technique of Data Visualization for evaluating the Model here in the Snapshot. I hope you will gain some insights and work on the same. Excited about the days to come!! - <a href="https://github.com/ThinamXx/AmazonReviews__Analysis.git"><strong>Amazon Reviews Analysis</strong></a></p>
+<p><img src="./Images/Day%2040a.PNG" class="img-fluid" /></p>
+<p><strong>Day41 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about Feed Forward Networks for Natural Language Processing using PyTorch. I have covered the topics such as The Multi Layer Perceptron or MLP, Simple XOR Functions with MLP using PyTorch and Softmax Activation Function under the hood of <strong>Natural Language Processing with PyTorch</strong>. I have started working in Surname Classification Model Inferring Demographic Information which has applications from Product Recommendations to ensuring fair outcomes for users across different Demographics. I will be using PyTorch for building the Classifier Model. I have presented the Implementation of PyTorch in building the simple MLP Class here in the Snapshots. I have also presented the techniques for processing the raw Dataset for Surname Classification Project using PyTorch. I hope you will gain some insights and you will also spend some time learning about MLP and working on the same and get ready for building the Model. Excited about the days ahead !! - Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/SurnameClassification__PyTorch.git"><strong>Surname Classification with Demographics: PyTorch</strong></a></p>
+<p><img src="./Images/Day%2041a.PNG" class="img-fluid" /> <img src="./Images/Day%2041b.PNG" class="img-fluid" /></p>
+<p><strong>Day42 of 66DaysOfData!</strong> - The Vectorizer Class: The Vocabulary converts individual tokens into Integers and The Surname Vectorizer is responsible for applying the Vocabulary and converting surname into Vectors. Surnames are sequence of characters and each character is an individual token in the Vocabulary. In my journey of Natural Language Processing, Today I have read and Implemented about PyTorch’s Data Representation, The Vocabulary Class, The Vectorizer Class and The DataLoader Class under the hood of <strong>Natural Language Processing with PyTorch</strong>. I have continued working in Surname Classification Model Inferring Demographic Information which has applications from Product Recommendations to ensuring fair outcomes for users across different Demographics. Today, I have worked out the Implementation of Dataset Class, Vectorizer Class, Vocabulary Class and Multi Layer Perceptron or MLP Classifier Model. I have presented the Implementation of Vectorizer Class using PyTorch here in the Snapshot. I hope you will gain some insights from here and you will also spend some time working on the same. Excited about the days to come!! - Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/SurnameClassification__PyTorch.git"><strong>Surname Classification with Demographics: PyTorch</strong></a></p>
+<p><img src="./Images/Day%2042.PNG" class="img-fluid" /></p>
+<p><strong>Day43 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read and Implemented about MLP Classifier, The Training Routine Class using PyTorch’s Implementation, The Training Loop, Evaluation, Inference and Inspection of the Model prepared using PyTorch under the hood of <strong>Natural Language Processing with PyTorch</strong>. I have continued working in Surname Classification Model Inferring Demographic Information which has applications from Product Recommendations to ensuring fair outcomes for users across different Demographics. Today, I have worked out the Implementation of MLP Classifier, The Training Routine Class, Inference and Inspection of the Model prepared using PyTorch. I have presented the simple Implementation of MLP Classifier Model along with the Snapshot of the Inference and Inspection of the Model Evaluation using PyTorch. Actually, It is the continuation of yesterday’s Snapshot. I hope you will gain some insights and you will also spend some time working on the same. Excited about the days to come !! - Book: - <strong>Natural Language Processing with PyTorch</strong> - <a href="https://github.com/ThinamXx/SurnameClassification__PyTorch.git"><strong>Surname Classification with Demographics: PyTorch</strong></a></p>
+<p><img src="./Images/Day%2043a.PNG" class="img-fluid" /> <img src="./Images/Day%2043c.PNG" class="img-fluid" /></p>
+<p><strong>Day44 of 66DaysOfData!</strong> - <strong>Logistic Regression</strong>: Logistic Regression is a Statistical Model that in its basic form uses a logistic function to model a binary dependent variable, although many more complex extensions exist. In Regression Analysis, Logistic Regression is estimating the parameters of a Logistic Model in a form of Binary Regression. In my journey of Natural Language Processing, Today I have started learning from <strong>Natural Language Processing Specialization</strong> on Coursera. I have just started learning the first course and I will spend couple of weeks in this Specialization. I have covered the topics such as Logistic Regression and Naive Bayes along with various Fundamental Preprocessing steps under the hood of <strong>Natural Language Processing</strong>. This Specialization is managed and organized by the team of Andrew Ng i.e deeplearning.ai so that I will gain more exposure to Mathematics behind every topics which has very high Importance. I have presented the Implementation of Naive Bayes Classifier along with Testing procedure here in the Snapshot. I hope you will also spend some time going through this Specialization and I am so much excited about the days to come !! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong></p>
+<p><img src="./Images/Day%2044.PNG" class="img-fluid" /></p>
+<p><strong>Day45 of 66DaysOfData!</strong> - <strong>KNearest Neighbors</strong>: The KNN Algorithm is a simple, supervised machine learning algorithm that can be used to solve both classification and regression problems. KNN works by finding the distances between a Query and all the examples in the Data, selecting the specified number of examples or K closest to the Query, then votes for the most Frequent Label or Averages the Labels. In my journey of Natural Language Processing, Today I have completed the first course i.e <strong>Natural Language Processing with Classification and Vector Spaces</strong> from Natural Language Processing Specialization on Coursera. I have covered the topics such as Vector Space Models, Euclidean Distance, Cosine Similarity, PCA, KNN, Logistic Regression, Naive Bayes and many more in this course. I have presented the simple Implementation of KNN along with techniques for creating Hash table here in the Snapshots. Actually, I have presented this Implementation on the basis of this Course for self understanding so I have not included all the dependencies here in the Snapshot. I hope you will also spend some time going through this Specialization. Excited about the days ahead !! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://lnkd.in/dZW-UbD"><strong>Natural Language Processing with Classification and Vector Spaces</strong></a></p>
+<p><img src="./Images/Day%2045.PNG" class="img-fluid" /></p>
+<p><strong>Day46 of 66DaysOfData!</strong> - <strong>Minimum Edit Distance</strong>: The Minimum Edit Distance between two strings is defined as the minimum number of Editing Operations like Insertion, Deletion and Substitution needed to transform one string into another. It’s working principle is applicable in building the Auto Correction Model. In my journey of Natural Language Processing, Today I have started learning and Implementing NLP from the second course of <strong>Natural Language Processing Specialization</strong> on Coursera i.e <strong>Natural Language Processing with Probabilistic Models</strong>. I have covered the topics such as Autocorrect Models using Minimum Edit Distance Algorithm, POS Tagging, Markov’s Models and The Viterbi Algorithm under the hood of Natural Language Processing. I will spend couple of weeks in this Specialization. I have presented the simple Implementation of Minimum Edit Distance Algorithm whose working principle is applicable in Auto Correction Model here in the Snapshot. I hope you will also spend some time learning about the topics mentioned above. I hope you will also spend some time in this Specialization. I am excited about the days to come!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong></p>
+<p><img src="./Images/Day%2046.PNG" class="img-fluid" /></p>
+<p><strong>Day47 of 66DaysOfData!</strong> - <strong>Continuous Bag of Words</strong>: In the Continuous Bag of Words Model, The distributed representations of context or surrounding words are combined to predict the word in the middle. The Model predicts the current word from a window of surrounding context words. In my journey of Natural Language Processing, Today I have learned about Ngrams and Probabilities, Sequence Probabilities, Smoothing, Word Embeddings, CBOW, Cleaning and Tokenization from the course <strong>Natural Language Processing with Probabilistic Models</strong> which is the second course in <strong>Natural Language Processing Specialization</strong> on Coursera. I have completed the two Courses in this Specialization. I have presented the simple Implementation of Initializing the Model, Softmax Activation Function, Forward Propagation, Cost Function and Back Propagation for training the CBOW Model here in the Snapshot. It presents the Mathematics behind simple Neural Network which is crucial for understanding the Implementation of Neural Networks and Deep Learning. I hope you will gain some insights and you will also spend some time learning about the topics mentioned above. Excited about days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong></p>
+<p><img src="./Images/Day%2047.PNG" class="img-fluid" /></p>
+<p><strong>Day48 of 66DaysOfData!</strong> - <strong>Gated Recurrent Unit</strong>: A Gated Recurrent Unit or GRU is a gating mechanism in RNN similar to a Long Short Term Memory or LSTM unit but without an output gate. GRU solves the vanishing Gradient problem that can come with standard RNN by using an Update Gate and a Reset Gate. In my journey of Natural Language Processing, Today I have started learning and Implementing NLP from the third course of <strong>Natural Language Processing Specialization</strong> on Coursera i.e <strong>Natural Language Processing with Sequence Models</strong>. I have covered the topics such as Trax and Neural Networks, Dense and ReLU Layers, Serial Layers, RNN and GRU using Trax, Deep and Bidirectional RNN under the hood of Natural Language Processing. <strong>Neural Networks and Trax: Trax is good for Implementing new state of the Art Algorithms like Transformers, Reformers and BERT. It is actively maintained by Google Brain Team for Advanced Deep Learning tasks</strong>. I have presented the simple Implementation of Training GRU Model using Trax here in the Snapshot. I hope you will gain some insights from here and you will also spend some time learning about Trax Frameworks in Natural Language Processing and Deep Learning. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong></p>
+<p><img src="./Images/Day%2048.PNG" class="img-fluid" /></p>
+<p><strong>Day49 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about LSTMs and Named Entity Recognition, RNNs and Vanishing Gradients, Siamese Neural Networks, Triplets and One Shot Learning from the course <strong>Natural Language Processing with Sequence Models</strong> which is the part of <strong>Natural Language Processing Specialization</strong> on Coursera. I have completed three Courses in this Specialization. I have started working with <strong>Quora Questions Answers Dataset</strong> to build a LSTM Model that can Identify the Similar Questions or the Duplicate Questions which is useful when we have to work with several versions of the same Questions. I will build this Model using <strong>Trax Framework</strong> which is maintained by Google Brain Team and good for Implementing new state of the Art Algorithms like Transformers, Reformers and BERT. I have presented the simple Implementation of Data Preparation for training the LSTM Model using Quora Dataset here in the Snapshot. I hope you will gain some insights and you will also start working on the same. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://github.com/ThinamXx/DuplicateQuestions__Recognition.git"><strong>Duplicate Questions Recognition: Trax</strong></a></p>
+<p><img src="./Images/Day%2049.PNG" class="img-fluid" /></p>
+<p><strong>Day50 of 66DaysOfData!</strong> - Siamese Neural Network: Siamese Neural Network is an Artificial Neural Network which uses the same weight while working in tandem on two different input vectors to compute comparable output vectors. In my journey of Natural Language Processing, Today I have learned and Implemented about Data Generators or Iterators, Siamese Neural Networks, LSTMs and Triplet Loss under the hood of <strong>Natural Language Processing</strong>. I have continued working with <strong>Quora Questions Answers Dataset</strong> to build a Model using LSTM that can identify the Similar Questions or the Duplicate Questions which is useful when we have to work with several versions of the same Questions. I have presented the Implementation of Siamese Neural Network using LSTM Model along with the Implementation of Triplet Loss here in the Snapshots. I have also presented the Implementation of Training the Model using Data Generators and other dependencies. I have presented all the Implementations using Trax Framework here. I hope you will gain some insights from here and you will also continue working on the same. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://github.com/ThinamXx/DuplicateQuestions__Recognition.git"><strong>Duplicate Questions Recognition: Trax</strong></a></p>
+<p><img src="./Images/Day%2050a.PNG" class="img-fluid" /> <img src="./Images/Day%2050b.PNG" class="img-fluid" /></p>
+<p><strong>Day51 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned and Implemented about Siamese Neural Networks and LSTMs, Implementation of Trax in Siamese Neural Networks under the hood of <strong>Natural Language Processing</strong>. I have completed working with <strong>Quora Questions Answers Dataset</strong> to build a LSTM Model that can identify the Similar Questions or the Duplicate Questions which is useful when we have to work with several versions of the same Questions. I have build a Model using Trax which can identify the Duplicate Questions. <strong>Neural Networks and Trax: Trax is good for Implementing new state of the Art Algorithms like Transformers, Reformers and BERT. It is actively maintained by Google Brain Team for Advanced Deep Learning tasks</strong>. I have presented the Implementation of Siamese Neural Network using LSTM Model that can identify the Similar or Duplicate Questions here in the Snapshots. I have also presented the output of the Model here which fascinates me a lot. I hope you will gain some insights from here and you will also spend some time working on the same. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://github.com/ThinamXx/DuplicateQuestions__Recognition.git"><strong>Duplicate Questions Recognition: Trax</strong></a></p>
+<p><img src="./Images/Day%2051.PNG" class="img-fluid" /> <img src="./Images/Day%2051b.PNG" class="img-fluid" /></p>
+<p><strong>Day52 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have learned about Sequence to Sequence Models, Alignment, Attention Models, BLEU or Bilingual Evaluation Understudy, ROUGE or Recall Oriented Understudy, Greedy Decoding, Random Sampling, Temperature Parameter, Beam Search Decoding, Minimum Bayes Risk or MBR and Teacher Forcing Algorithm in LSTM from the course <strong>Natural Language Processing with Attention Models</strong> which is the last course of <strong>Natural Language Processing Specialization</strong>. <strong>Teacher Forcing: Teacher Forcing is the technique where the target word is passed as the next input to the Decoder. Training with Teacher Forcing converges faster</strong>. I have presented the simple Implementation of Neural Machine Translation Model which uses Attention along with the Implementation of Preparing Attention Input using Encoder and Decoder Activations here in the Snapshots. I have presented this Implementation on the basis of this course for self understanding so I have not included all the dependencies here in the Snapshot. I hope you will also spend some time going through the topics mentioned above. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://lnkd.in/dpw2FwC"><strong>Teacher Forcing in RNNs</strong></a></p>
+<p><img src="./Images/Day%2052.PNG" class="img-fluid" /></p>
+<p><strong>Day53 of 66DaysOfData!</strong> - <strong>Transformer and Natural Language Processing</strong>: The Transformer is a Deep Learning Model which are designed to handle Sequential Data such as Translation and Summarization and allows much more parallelization than RNNs such as LSTM. In my journey of Natural Language Processing, Today I have learned about Transformers and it’s Applications, Dot Product, Multi Head and Causal Attentions, The Transformer Decoder and Summarizer, State of Art Transformers such as GPT2 or Generative Pretraining for Transformer, BERT or Bidirectional Encoder Representations from Transformer, T5 or Text to Text Transfer Transformer and Multitask Training Strategy and GLUE Benchmark from the course <strong>Natural Language Processing with Attention Models</strong> which is the last course of <strong>Natural Language Processing Specialization</strong> on Coursera. I have presented the simple Implementation of Transformer Language Model using Trax here in the Snapshot. I have also presented the Implementation of PositionalEncoder, FeedForward and DecoderBlock which returns the list of Layers required for the Transformer Model here. I hope you will gain some insights and you will also spend some time learning about the Transformer Model. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong></p>
+<p><img src="./Images/Day%2053.PNG" class="img-fluid" /></p>
+<p><strong>Day54 of 66DaysOfData!</strong> - Reformer: The Efficient Transformer or The Reformer is a Transformer Model which combines two crucial techniques to solve the problems of Attention and Memory allocation that limit Transformer Application to Long context windows. Reformer uses LSH to reduce the complexity of attending over Long sequences and Reversible residual layers to more efficiently use the memory available. In my journey of Natural Language Processing, Today I have learned about Long Sequential Data, Transformer Complexity, Locality Sensitive Hashing or LSH Attention, Reversible Residual Layers and Reformer from the course <strong>Natural Language Processing with Attention Models</strong> which is the last course of <strong>Natural Language Processing Specialization</strong>. I have presented the simple Implementation of Reformer Language Model along with the Implementation of Training the Reformer Model using Trax here in the Snapshots. I have also presented the Implementation of Forward Reversible Layer and Reverse Reversible Layer here. I hope you will gain some insights and you will also spend some time learning about the same. Excited about the days ahead!! - Course: - <strong>Natural Language Processing Specialization: Coursera</strong> - <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/8LNP2U235SWZ"><strong>Natural Language Processing Specialization Completion</strong></a></p>
+<p><img src="./Images/Day%2054.PNG" class="img-fluid" /></p>
+<p><strong>Day55 of 66DaysOfData!</strong> - Transfer Learning: Transfer Learning is a process where a Model is first pretrained on a Data rich task before being fine tuned on a Downstream Task and Transfer Learning has emerged as a powerful technique in Natural Language Processing or NLP. The effectiveness of Transfer Learning has given rise to a Diversity of approaches, methodology, and practice. In my journey of Natural Language Processing, Today I have started reading the Papers of Transformers and Natural Language Processing which is named as <strong>Exploring the Limits of Transfer Learning with a Unified Text to Text Transformer</strong>. I have presented the Implementation of Encoder and Decoder Class which are the key components in any Dominant Sequence Models. I hope you will also spend some time reading about the Transformer from the Paper mentioned above. Excited about the days ahead!! - <a href="https://arxiv.org/abs/1910.10683"><strong>Exploring the Limits of Transfer Learning with a Unified Text to Text Transformer</strong></a></p>
+<p><img src="./Images/Day%2055.PNG" class="img-fluid" /></p>
+<p><strong>Day56 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read a Paper about Deep Learning and Text Classification which is named as <strong>Deep Learning Based Text Classification: A Comprehensive Review</strong>. I have read about various Text Classification Tasks such as Sentiment Analysis, News Categorization, Topic Analysis and Question Answering. I have also read about various Deep Learning Models for Text Classification such as Feed Forward Neural Networks, RNN Based Models, CNN Based Models, Capsule Neural Networks, Models with Attention, Transformers, Graph Neural Networks, Siamese Neural Networks and Hybrid Models from this Paper. I have presented the simple Implementation of Layer Normalization, Sublayer Connection, Encoder Layer and Feed Forward Layer using PyTorch here in the Snapshots. I hope you will also spend time reading about Deep Learning and Text Classification from the Paper mentioned above. I am excited about the days ahead!! - <a href="https://arxiv.org/abs/2004.03705"><strong>Deep Learning Based Text Classification: A Comprehensive Review</strong></a></p>
+<p><img src="./Images/Day%2056.PNG" class="img-fluid" /></p>
+<p><strong>Day57 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read a Paper about Deep Learning and Text Classification which is named as <strong>Deep Learning Based Text Classification: A Comprehensive Review</strong>. I have completed reading this Paper. I have read about Unsupervised Learning using Autoencoders, Adversarial Training, Reinforcement Learning and few Popular Datasets such as YELP and IMDB. I have also read about Popular Metrics for Text Classification such as Accuracy and Error Rate, Precision, Recall and F1 Score from this Paper. I have also read one of the most popular Articles named <strong>The Illustrated Transformer</strong> by Jay Alammar. It teaches about the Transformer from Scratch. I have read the topics such as Encoder, Decoder, Self Attention, Feed Forward and Multi Head Attention in this Article. I have presented the Implementation of Decoder Class, DecoderLayer with FeedForward and Subsequent Mask using PyTorch here in the Snapshots. I hope you will spend some time reading the Paper and Article mentioned above. Excited about the days ahead!! - <a href="https://arxiv.org/abs/2004.03705"><strong>Deep Learning Based Text Classification: A Comprehensive Review</strong></a> - <a href="http://jalammar.github.io/illustrated-transformer/"><strong>The Illustrated Transformer</strong></a></p>
+<p><img src="./Images/Day%2057.PNG" class="img-fluid" /></p>
+<p><strong>Day58 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read some Articles about Deep Learning and Natural Language Processing. I have read an Article named <strong>NLP’s ImageNet Moment</strong> which is written by Sebastian Ruder. Here, I have read about the recent advances in NLP such as ULMFiT, ELMO, OpenAI Transformer and the ImageNet for Language. Similarly, I have read another Article named as <strong>The Illustrated BERT, ELMO and Co.</strong> which is written by Jay Alammar. Here, I have read about BERT Model Architecture, Word Embeddings, Transfer Learning and the topics mentioned above. I have also read another Article named <strong>Generalized Language Models</strong> which is written by Lilian Weng. Here, I am reading about Language Models and I am still reading this Article. I have presented the Implementation of Attention and Multi Head Attention Class using PyTorch here in the Snapshot. Actually, It is the continuation of yesterday’s Snapshot. I hope you will also spend some time reading the Articles mentioned above. Excited about the days ahead!! - <a href="https://ruder.io/nlp-imagenet/"><strong>NLP’s ImageNet Moment</strong></a> - <a href="http://jalammar.github.io/illustrated-bert/"><strong>The Illustrated BERT, ELMO and Co.</strong></a> - <a href="https://lilianweng.github.io/lil-log/2019/01/31/generalized-language-models.html"><strong>Generalized Language Models</strong></a></p>
+<p><img src="./Images/Day%2058.PNG" class="img-fluid" /></p>
+<p><strong>Day59 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read Papers about Skip Gram and NLP. I have read a Paper which is named as <strong>Efficient Estimation of Word Representations in Vector Space</strong>. Here, I have read about Model Architectures, Feed Forward Neural Net Language Model, Recurrent Neural Net Language Model, Log Linear Models, CBOW Models, Continuous Skip Gram Model and various other related topics. I have also read the Paper which is named as <strong>Distributed Representations of Words and Phrases and their Compositionality</strong>. Here, I have read about Skip Gram Model, Hierarchical Softmax, Negative Sampling, Subsampling and Additive Compositionality. I have presented the Implementation of Positionwise Feed Forward Class, Embedding, Positional Encoding and Feed Forward using PyTorch here in the Snapshot. Actually, It is the continuation of yesterday’s Snapshot. I hope you will also spend some time reading the Topics and Papers mentioned above about Skip Gram Model. Excited about the days ahead!! - <a href="https://arxiv.org/abs/1301.3781"><strong>Efficient Estimation of Word Representations in Vector Space</strong></a> - <a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf"><strong>Distributed Representations of Words and Phrases and their Compositionality</strong></a></p>
+<p><img src="./Images/Day%2059.PNG" class="img-fluid" /></p>
+<p><strong>Day60 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read Papers about GloVe and Recurrent Neural Network Language Model. I have read a Paper which is named as <strong>GloVe : Global Vectors for Word Representation</strong>. Here, I have read about Matrix Factorization Methods, The GloVe Model and Complexity of the Model, Evaluation Methods, Word Analogies, Model Analysis and various other related topics. Similarly, I have read another Paper which is named as <strong>A Simple Way to Initialize Recurrent Networks of Rectified Linear Units</strong>. Here, I have read about Language Modeling and Initialization, Speech Recognition and various other related topics. I have presented the Implementation of Transformer Model, Batches and Masking using PyTorch here in the Snapshot. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. I am excited about the days ahead!! - <a href="https://nlp.stanford.edu/pubs/glove.pdf"><strong>GloVe : Global Vectors for Word Representation</strong></a> - <a href="https://arxiv.org/pdf/1504.00941.pdf"><strong>A Simple Way to Initialize Recurrent Networks of Rectified Linear Units</strong></a></p>
+<p><img src="./Images/Day%2060.PNG" class="img-fluid" /></p>
+<p><strong>Day61 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read the Paper about Neural Machine Translation with Attention and Dynamic Memory Network. I have read the Paper which is named as <strong>Neural Machine Translation By Jointly Learning To Align and Translate</strong>. Here, I have read the Topics related to Neural Machine Translation such as RNN Encoder and Decoder, Translation and to Align and Qualitative and Quantitative Analysis and more related to the same. I have also started reading another Paper which is named as <strong>Dynamic Memory Networks for Natural Language Processing</strong>. I have just started reading this Paper and I will complete it soon. I have presented the Implementation of Training the Loop of Transformer Model along with the Implementation of Batching using PyTorch here in the Snapshots. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. I am excited about the days ahead!! - <a href="https://arxiv.org/pdf/1409.0473.pdf"><strong>Neural Machine Translation By Jointly Learning To Align and Translate</strong></a> - <a href="https://arxiv.org/abs/1506.07285"><strong>Dynamic Memory Networks for Natural Language Processing</strong></a></p>
+<p><img src="./Images/Day%2061.PNG" class="img-fluid" /></p>
+<p><strong>Day62 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read the Papers about Dynamic Memory Networks and Recursive Neural Networks. I have read the Paper which is named as <strong>Dynamic Memory Networks for Natural Language Processing</strong>. Here, I have read about the Dynamic Memory Networks and Episodic Memory Module, Attention and Memory Update Mechanism and various Topics related to the same. I have also read the Paper which is named as <strong>Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank</strong>. Here, I have read about Semantic Vector Space and Compositionality in Vector Space, Recursive Neural Tensor Networks, Backpropagation and various Topics related to the same. I have presented the Implementation of Optimizer along with Learning Rates using PyTorch here in the Snapshots. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. Excited about the days ahead!! - <a href="https://arxiv.org/abs/1506.07285"><strong>Dynamic Memory Networks for Natural Language Processing</strong></a> - <a href="https://nlp.stanford.edu/~socherr/EMNLP2013_RNTN.pdf"><strong>Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank</strong></a></p>
+<p><img src="./Images/Day%2062.PNG" class="img-fluid" /></p>
+<p><strong>Day63 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read the Papers about Stanza: NLP Toolkit and Transfer Learning to study Linguistic Structure. I have read the Paper which is named as <strong>Stanza: A Python Natural Language Processing Toolkit for Many Human Languages</strong>. Here, I have read about Neural Multilingual NLP Pipeline, Dependency Parsing and Lemmatization, NER and various Topics related to the same. I have also read the Paper which is named as <strong>Learning Music Helps you Read: Using Transfer to Study Linguistic Structure in Language Models</strong>. Here, I have read about LSTM Architecture and Training, Random Baselines, Recursive Structure, Non Linguistic Structure and various Topics related to the same. I have presented the Implementation of Label Smoothing and Feed Forward using PyTorch here in the Snapshots. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. Excited about the days ahead!! - <a href="https://nlp.stanford.edu/pubs/qi2020stanza.pdf"><strong>Stanza: A Python Natural Language Processing Toolkit for Many Human Languages</strong></a> - <a href="https://nlp.stanford.edu/pubs/papadimitriou2020music.pdf"><strong>Learning Music Helps you Read: Using Transfer to Study Linguistic Structure in Language Models</strong></a></p>
+<p><img src="./Images/Day%2063.PNG" class="img-fluid" /></p>
+<p><strong>Day64 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read the Papers about Long Short Term Memory and Stanford CoreNLP Toolkit. I have read the Paper which is named as <strong>Improved Semantic Representations From Tree Structured Long Short Term Memory Networks</strong>. Here, I have read about Bidirectional LSTM and Multilayer LSTM, Tree Structured LSTM, Semantic Relatedness and Sentiment Classification and various Topics related to the same. I have read another Paper which is named as <strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong>. Here, I have read about Model Design and Development, Elementary Usage, Annotators, Tokenization and Lemmatization and various Topics related to the same. I have presented the Implementation of Data Generator, Loss Computation and Greedy Decoding in Transformer Model using PyTorch here in the Snapshot. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. Excited about the days ahead!! - <a href="https://nlp.stanford.edu/pubs/tai-socher-manning-acl2015.pdf"><strong>Improved Semantic Representations From Tree Structured Long Short Term Memory Networks</strong></a> - <a href="https://nlp.stanford.edu/pubs/StanfordCoreNlp2014.pdf"><strong>The Stanford CoreNLP Natural Language Processing Toolkit</strong></a></p>
+<p><img src="./Images/Day%2064.PNG" class="img-fluid" /></p>
+<p><strong>Day65 of 66DaysOfData!</strong> - In my journey of Natural Language Processing, Today I have read the Papers about Zero Shot Learning and Syntax Sensitive Dependencies in LSTM. I have read the Paper which is named as <strong>Zero Shot Learning Through Cross Modal Transfer</strong>. Here, I have read about Zero Shot and One Shot Learning, Word and Image Representations, Zero Shot Learning Models, Novelty Detection and various Topics related to the same. I have also read another Paper which is named as <strong>Assessing the Ability of LSTMs to Learn Syntax Sensitive Dependencies</strong>. Here, I have read about LSTM Model and Baselines, Number Prediction, Relative Clauses, Language Modeling and various Topics related to the same. I have presented the Implementation of Greedy Decoding and Iterators using PyTorch here in the Snapshot. Actually, It is the continuation of previous Snapshots. I hope you will also spend some time reading about the Topics and Papers mentioned above. Excited about the days ahead!! - <a href="https://nlp.stanford.edu/pubs/SocherGanjooManningNg_NIPS2013.pdf"><strong>Zero Shot Learning Through Cross Modal Transfer</strong></a> - <a href="https://arxiv.org/pdf/1611.01368.pdf"><strong>Assessing the Ability of LSTMs to Learn Syntax Sensitive Dependencies</strong></a></p>
+<p><img src="./Images/Day%2065.PNG" class="img-fluid" /></p>
+<p><strong>Day66 of 66DaysOfData!</strong> - Today I have read the Paper which is named as <strong>Finding Universal Grammatical Relations in Multilingual BERT</strong>. Here, I have read about BERT, Cross Lingual Probing, Universal Grammatical Relations, Finer Grained Analysis, Determiners and various Topics related to the same. I have also spent some time going through the Documentation of my Journey in GitHub. Today, I have completed this Journey and I am so grateful and thankful to meet lots of amazing persons along the way. Actually, <strong>Ken Jee</strong> is one of the amazing persons who started this Journey. He has always been supportive and a great example to the Data Science Aspirants and I am so thankful to him. I have been Learning and Implementing Natural Language Processing for couple of months now. I will continue my Learning with new Journey and new Topics. I hope you have also learned something interesting in Natural Language Processing until this day. Personally, I am so thankful to you, the one who has come along this way and supported me since the start of the Journey. We will start to learn new Topics with new hope and energy. Thank you!! - <a href="https://nlp.stanford.edu/pubs/chi2020finding.pdf"><strong>Finding Universal Grammatical Relations in Multilingual BERT</strong></a></p>
+<p><img src="./Images/Day%2066.PNG" class="img-fluid" /></p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Welcome to my blog!</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Welcome to my blog!</span> <span class="hidden" data-render-id="quarto-int-navbar:Thinam Tamang">Thinam Tamang</span> <span class="hidden" data-render-id="quarto-int-navbar:/about.html">/about.html</span> <span class="hidden" data-render-id="quarto-int-navbar:https://www.linkedin.com/in/thinam-tamang/">https://www.linkedin.com/in/thinam-tamang/</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/ThinamXx">https://github.com/ThinamXx</span> <span class="hidden" data-render-id="quarto-int-navbar:https://linktr.ee/Thinam">https://linktr.ee/Thinam</span> <span class="hidden" data-render-id="quarto-int-navbar:https://twitter.com/thinam_">https://twitter.com/thinam_</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">Welcome to my blog! - Journey of 66DaysOfData in Natural Language Processing</span> <span class="hidden" data-render-id="quarto-twittercardtitle">Welcome to my blog! - Journey of 66DaysOfData in Natural Language Processing</span> <span class="hidden" data-render-id="quarto-ogcardtitle">Welcome to my blog! - Journey of 66DaysOfData in Natural Language Processing</span> <span class="hidden" data-render-id="quarto-metasitename">Welcome to my blog!</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+</body>
+
+</html>
