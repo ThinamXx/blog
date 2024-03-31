@@ -1,3 +1,10 @@
+---
+title: "Introduction to Reinforcement Learning"
+author: "Thinam Tamang"
+categories: [Reinforcement Learning, Deep Learning, RLHF]
+date: "2024-3-31"
+---
+
 I am going to write a series of posts on Reinforcement Learning. This post is the first post in the series. In this post, I will introduce the basic concepts of Reinforcement Learning.
 
 ## **What is Reinforcement Learning?**  
