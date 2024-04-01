@@ -42,7 +42,98 @@ The optimal Q-value function is denoted by $Q^*(s,a)$ and it is defined as the m
 ## **Q-Learning**  
 The optimal Q-value function as known as the optimal action-value function obeys the **Bellman Equation**. The Bellman Equation is based on the intuition that if the optimal action-value function $Q^*(s', a')$ of the sequence of states $s'$ and the next time step is known for all possible actions $a'$, then the optimal action-value function $Q^*(s,a)$ of the current state $s$ and the current action $a$ can be calculated. The Bellman Equation is given by: $Q^*(s,a) = E_{s',r}[r + \gamma max_{a'} Q^*(s',a') | s,a]$. 
 
-The **Q-Learning** algorithm is based on the Bellman Equation and it is used to estimate the optimal Q-value function $Q^*(s,a)$ by iteratively updating the Q-value function $Q(s,a)$ using the Bellman Equation such that: $Q_{i+1}(s,a) = E[ r + \gamma max_{a'} Q_i(s',a') | s,a]$. In practice, this approach is totally impractical because the action-value function is estimated separately for each state-action pair without generalizing the knowledge across states. Instead, we use a function approximator to estimate the Q-value function: $Q^*(s,a) \approx Q(s,a;\theta)$ which introduces **Deep Q-Network (DQN)**.
+The **Q-Learning** algorithm is based on the Bellman Equation and it is used to estimate the optimal Q-value function $Q^*(s,a)$ by iteratively updating the Q-value function $Q(s,a)$ using the Bellman Equation such that:   
+$Q_{i+1}(s,a) = E[ r + \gamma max_{a'} Q_i(s',a') | s,a]$.  
+$Q_{i+1}(s,a) = Q_i(s,a) + \alpha (r + \gamma max_{a'} Q_i(s',a') - Q_i(s,a))$.
+
+In practice, this approach is totally impractical because the action-value function is estimated separately for each state-action pair without generalizing the knowledge across states. Instead, we use a function approximator to estimate the Q-value function: $Q^*(s,a) \approx Q(s,a;\theta)$ which introduces **Deep Q-Network (DQN)**.
+
+#### **Implementation of Q-Learning**  
+You can see my implementation of Q-Learning in this [notebook](https://github.com/ThinamXx/reinforcement-learning/blob/main/examples/q-learning.ipynb). In this notebook, I have implemented the Q-Learning algorithm to solve the Desert Navigation problem. The agent is thirsty and it needs to find the water in the 2D grid world. The agent can move in four directions: up, down, left, and right. In this notebook, the agent learns to find the water by taking actions and observing the rewards. The agent learns to find the water by maximizing the cumulative reward.
+
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="SE.png" alt="" width="300">
+<p style="text-align: center;">Fig a. Agent wants to navigate to the bottom right corner of the grid.</p>
+</div>
+
+```python
+# defining the state environment
+class State:
+
+    def __init__(self, grid, agent_pos):
+        self.grid = grid
+        self.agent_pos = agent_pos
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, State)
+            and self.grid == other.grid
+            and self.agent_pos == other.agent_pos
+        )
+
+    def __hash__(self):
+        return hash(str(self.grid) + str(self.agent_pos))
+
+    def __str__(self):
+        return f"State(grid={self.grid}, agent_pos={self.agent_pos})"
+```
+
+```python
+# defining the actions and the rewards
+def act(state, action):
+            
+    p = new_agent_pos(state, action)
+    grid_item = state.grid[p[0]][p[1]]
+    
+    new_grid = deepcopy(state.grid)
+    
+    if grid_item == DESERT:
+        reward = -100
+        is_done = True
+        new_grid[p[0]][p[1]] += AGENT
+        
+    elif grid_item == WATER:
+        reward = 1000
+        is_done = True
+        new_grid[p[0]][p[1]] += AGENT
+        
+    elif grid_item == EMPTY:
+        reward = -1
+        is_done = False
+        old = state.agent_pos
+        new_grid[old[0]][old[1]] = EMPTY
+        new_grid[p[0]][p[1]] = AGENT        
+        
+    elif grid_item == AGENT:
+        reward = -1
+        is_done = False
+        
+    else:
+        raise ValueError(f"Unknown grid item {grid_item}")
+    
+    return State(grid=new_grid, agent_pos=p), reward, is_done
+```
+
+```python
+# agent learns using Q-Learning
+for e in range(N_EPISODES):
+    
+    state = start_state
+    total_reward = 0
+    alpha = alphas[e]
+    
+    for _ in range(MAX_EPISODE_STEPS):
+        action = choose_action(state)
+        next_state, reward, done = act(state, action)
+        total_reward += reward
+        
+        q(state)[action] = q(state, action) + \
+                alpha * (reward + gamma *  np.max(q(next_state)) - q(state, action))
+        state = next_state
+        if done:
+            break
+    print(f"Episode {e + 1}: total reward -> {total_reward}")
+```
 
 ### **Deep Q-Network (DQN)**  
 Deep Q-Network (DQN) is a neural network (non-linear function approximator) that is used to estimate the action-value function $Q(s,a;\theta)$ in Q-Learning with weights given by $\theta$. The DQN is trained to minimize the loss function given by: $L_i(\theta_i) = E_{s,a \sim \rho(.)} [(y_i - Q(s,a;\theta_i))^2]$, where $y_i = E_{s' \sim \epsilon} [r + \gamma max_{a'} Q(s',a';\theta_{i-1}) | s,a]$ is the target value for iteration $i$ and $\rho(s, a)$ is a probability distribution over states and actions which is also known as the behavior distribution. The parameters from the previous iteration $\theta_{i-1}$ are held fixed while optimizing the loss function $L_i(\theta_i)$.
