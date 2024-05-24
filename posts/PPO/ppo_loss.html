@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thinam Tamang">
+<meta name="dcterms.date" content="2024-04-20">
+
+<title>Welcome to my blog! - Proximal Policy Optimization (PPO)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"> <i class="bi bi-gear-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Proximal Policy Optimization (PPO)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Reinforcement Learning</div>
+                <div class="quarto-category">PGO</div>
+                <div class="quarto-category">RLHF</div>
+                <div class="quarto-category">LLMs</div>
+                <div class="quarto-category">PPO</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 20, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="limitations-of-policy-gradient-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-of-policy-gradient-optimization"><strong>Limitations of Policy Gradient Optimization</strong></h2>
+<p>In my previous blog post, we discussed the <a href="https://thinamxx.github.io/blog/posts/PGO/policy_gradient.html">Policy Gradient Optimization</a> where we derived the expression for the gradient of the objective function w.r.t the policy parameters: <span class="math inline">\(\nabla_{\theta} J(\pi_{\theta}) \approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t^i | s_t^i) R(\tau^i)\)</span>. Similarly, the expression for the objective function which we want to maximize is: <span class="math inline">\(J(\pi_{\theta}) = \mathbb{E}_{\tau \sim \pi_{\theta}}[R(\tau)]\)</span>. However, PGO works well in simple environments, but it can be difficult to scale to more complex environments or problems like LLMs.</p>
+<ul>
+<li><p><strong>High Variance</strong>: As seen in the above expression of computing the gradient of the objective function, we are approximating the expectation using samples (computing mean) which means that we are calculating the expression only on a subset of the trajectories which can lead to high variance in the gradient estimates. Therefore, the gradient approximation is unbiased which means that the average of the gradients over many samples or trajectories will eventually converge to the true gradient. In large language models, we can’t easily increase the number of sample trajectories to reduce the variance because it is computationally expensive.</p></li>
+<li><p><strong>Sampling</strong>: In PGO, we sample the trajectories from the policy (or LLMs) and compute the reward associated with the trajectory, compute the log probability of the trajectory and then combine them to compute the gradient of the objective function. This entire process is repeated multiple times for each gradient ascent step to update the policy parameters. However, this sampling process can be computationally expensive and inefficient in large language models.</p></li>
+</ul>
+</section>
+<section id="off-policy-learning" class="level2">
+<h2 class="anchored" data-anchor-id="off-policy-learning"><strong>Off-Policy Learning</strong></h2>
+<p>Therefore, to address the limitations of PGO, we can use the <strong>Off-Policy Learning</strong> which uses the technique of <strong>Importance Sampling</strong> (i.e.&nbsp;it allows us to evaluate the expectation over a distribution <span class="math inline">\(X\)</span> using samples taken from a different distribution <span class="math inline">\(Y\)</span>).</p>
+<p>Let’s consider a language model with parameters <span class="math inline">\(\theta_{offline}\)</span> which is basically an <strong>Offline Policy</strong> (model). Then we sample the trajectories (i.e.&nbsp;sequence of state, action, reward) and compute the log probability and reward associated with the trajectories. We then take the mini-batch of trajectories from the above sampled trajectories and optimize the parameters of the new language model with parameters <span class="math inline">\(\theta_{online}\)</span> which is an <strong>Online Policy</strong> (model). After optimizing the parameters of the online policy model, we then update the parameters of the offline policy model with the parameters of the online policy model i.e.&nbsp;<span class="math inline">\(\theta_{offline} = \theta_{online}\)</span>.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="OPL.png" alt="" width="800">
+<p style="text-align: center;">
+Fig a. Off-Policy Learning diagram prepared by Umar Jamil.
+</p>
+</div>
+<p>Therefore, using the <strong>Off-Policy Learning</strong> technique, we don’t have to sample the trajectories from the policy model for each gradient ascent step. Instead, we can sample the trajectories and keep them in the memory buffer and use them to optimize the policy model parameters for multiple gradient ascent steps. Then we can sample the trajectories again and repeat the process. This way, we can reduce the computational cost and improve the efficiency of the policy optimization process.</p>
+</section>
+<section id="reward-model" class="level2">
+<h2 class="anchored" data-anchor-id="reward-model"><strong>Reward Model</strong></h2>
+<p>Reward model is a type of language models that are trained in such a way that they give high rewards to the choosen answers and low rewards to the not choosen answers when given a concatenated question and answer pair to the model.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="RM.png" alt="" width="800">
+<p style="text-align: center;">
+Fig b. Reward Model prepared by Umar Jamil.
+</p>
+</div>
+<p>As shown in the above figure, we feed a series of input tokens (i.e.&nbsp;tokens of the concatenated question and answer pair) to a pre-trained language model (i.e.&nbsp;a transformer model), it generates the series of the output embeddings which are called the <strong>hidden states</strong>. In the context of language models, we usually consider the last hidden state to generate the new output tokens. Similarly, we will choose the last hidden state or output embedding of the language model to generate the reward for the answer fed to the model along with a particular question. We will use a Linear layer that takes the last hidden state of the language model and outputs one feature representation which is the reward for the answer.</p>
+<section id="dataset-for-reward-model" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-for-reward-model"><strong>Dataset for Reward Model</strong></h3>
+<p>According to the paper, <a href="https://arxiv.org/abs/2009.01325">Learning to summarize from human feedback</a>, training reward models often involves utilizing a dataset comprised of paired comparisons between two answers generated for the same question input. The dataset is prepared by:<br>
+- Let’s consider we have a pretrained language model and we feed a question to the model and generate multiple answers for the question. - We then ask the human experts to compare the answers and choose the best answer among them. - As mentioned above in the <a href="#reward-model">Reward Model section</a>, we then train the reward model, when given a concatenated question and answer pair, it should generate a high numerical reward for the choosen answer and a low numerical reward for the not choosen answer (i.e.&nbsp;the answer which is not choosen by the human expert).</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="RMD.png" alt="" width="800">
+<p style="text-align: center;">
+Fig c.&nbsp;Dataset for Reward Model prepared by Umar Jamil.
+</p>
+</div>
+</section>
+<section id="loss-function-for-reward-model" class="level3">
+<h3 class="anchored" data-anchor-id="loss-function-for-reward-model"><strong>Loss Function for Reward Model</strong></h3>
+<p>Since, we now have the dataset and the procedure to train the reward model, we can define the loss function for the reward model as follows:<br>
+<span class="math inline">\(L(\theta) = -log(\sigma(r(x, y_{win}) - r(x, y_{lose})))\)</span> where <span class="math inline">\(\sigma\)</span> is the sigmoid function, <span class="math inline">\(r(x, y_{win})\)</span> is the reward generated by the reward model for the choosen answer and <span class="math inline">\(r(x, y_{lose})\)</span> is the reward generated by the reward model for the not choosen answer.</p>
+<p>The above loss function will have two cases: - When <span class="math inline">\(r(x, y_{win}) &gt; r(x, y_{lose})\)</span>, it will generate a positive value which means that the sigmoid function will generate a value between 0.5 and 1.0. It will then be fed to the log function which will generate a negative value between 0 and -1.0 which will be multiplied by -1. Therefore, the loss will be a small positive value around 0 and 1.0. - When <span class="math inline">\(r(x, y_{win}) &lt; r(x, y_{lose})\)</span>, it will generate a negative value which means that the sigmoid function will generate a value between 0 and 0.5. It will then be fed to the log function which will generate a negative value between -1.0 and <span class="math inline">\(-\inf\)</span> which will be multiplied by -1. Therefore, the loss will be a large positive value.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="SL.png" alt="" width="500">
+<p style="text-align: center;">
+Fig d.&nbsp;Sigmoid and Log function used in the above explanation.
+</p>
+</div>
+<p>Therefore, the above loss function will penalize the reward model when it generates a high reward for the not choosen answer and a low reward for the choosen answer and vice versa as we know that the reward model will learn by minimizing the loss function.</p>
+</section>
+</section>
+<section id="proximal-policy-optimization-ppo" class="level2">
+<h2 class="anchored" data-anchor-id="proximal-policy-optimization-ppo"><strong>Proximal Policy Optimization (PPO)</strong></h2>
+<p>PPO is a type of policy optimization technique in RL, aimed at effectively training a policy without jeopardizing the stability of the training process. The underlying idea behind PPO is a small, stable steps, a philosophy of gently nudging the policy towards optimization, rather than forcing aggressive updates that could potentially destabilize the overall learning process.</p>
+<p>In traditional RL, the principle of policy gradient mandates that the policy we want to optimize (online policy) and the policy we use to sample the trajectories (offline policy) should remain close in the parameter space. However, this proximity constraint in parameter space doesn’t necessarily equate to the similar performance, and a slight variance in the parameters can drastically impact the effectiveness of the policy which can lead to a scenario often described as <strong>falling off the cliff</strong>.This is where PPO comes in, by ensuring that the policy updates are small and stable, it helps to prevent the policy from <strong>falling off the cliff</strong> and ensures that the policy remains stable throughout the training process.</p>
+<section id="clipped-surrogate-objective-function" class="level3">
+<h3 class="anchored" data-anchor-id="clipped-surrogate-objective-function"><strong>Clipped Surrogate Objective Function</strong></h3>
+<p>PPO-Clip attempts to keep the (online) policy close to the (offline) policy by introducing a <strong>clipped surrogate objective function</strong>. The clipped surrogate objective function is defined as follows:<br>
+<span class="math inline">\(L^{CLIP}(\theta) = \mathbb{E}_{t} [min(\frac{\pi_{\theta_{online}}(a_t | s_t)}{\pi_{\theta_{offline}}(a_t | s_t)} \hat{A}_t, clip(\frac{\pi_{\theta_{online}}(a_t | s_t)}{\pi_{\theta_{offline}}(a_t | s_t)}, 1 - \epsilon, 1 + \epsilon) \hat{A}_t)]\)</span><br>
+where <span class="math inline">\(\frac{\pi_{\theta_{online}}(a_t | s_t)}{\pi_{\theta_{offline}}(a_t | s_t)}\)</span> is the ratio of the online policy probability to the offline policy probability, <span class="math inline">\(\hat{A}_t\)</span> is the advantage function (i.e.&nbsp;it tells us how much better a particular action is compared to the average action in a particular state), and <span class="math inline">\(\epsilon\)</span> is the hyperparameter that determines how much the online policy can deviate from the offline policy. The clip function limits the ratio of the online policy probability to the offline policy probability to the range of <span class="math inline">\([1 - \epsilon, 1 + \epsilon]\)</span> which ensures that the policy updates are small and stable.</p>
+</section>
+<section id="value-function-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="value-function-estimation"><strong>Value Function Estimation</strong></h3>
+<p>In PPO, the value function is used to estimate the expected reward we can receive by starting from a particular state and following a particular policy. The learning objective for the value function estimator (or model) is to minimize the discrepancy between the predicted value and the actual reward value. The value function estimator is trained using the following loss function:<br>
+<span class="math inline">\(L^{VF}(\theta) = \mathbb{E}_{t} [(V_{\theta}{(s_t)} - \hat{R}_t)^2]\)</span><br>
+where <span class="math inline">\(V_{\theta}{s_t}\)</span> is the model’s predicted value for the state <span class="math inline">\(s_t\)</span> with parameters <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\hat{R}_t\)</span> is the actual reward value for the state <span class="math inline">\(s_t\)</span> and can be estimated as <span class="math inline">\(\hat{R}_t = \sum_{i=0}^{T} \gamma^i r_{t+i}\)</span> where <span class="math inline">\(\gamma\)</span> is the discount factor and <span class="math inline">\(r_{t+i}\)</span> is the reward received at time step <span class="math inline">\(t+i\)</span> from the sampled trajectory.</p>
+</section>
+<section id="ppo-loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="ppo-loss-function"><strong>PPO Loss Function</strong></h3>
+<p>The overall loss function for the PPO is a combination of the clipped surrogate objective function, the value loss function and entropy loss function. The entropy loss function is used to encourage the policy to explore more options and prevent it from getting stuck in a local optima. If we don’t include the entropy loss function, the policy or (model) will always choose the same action in a particular state that has the highest advantage value. The entropy loss function is defined as: <span class="math inline">\(L^{ENT}(\theta) = -\sum_{a} \pi_{\theta}(a | s) \log \pi_{\theta}(a | s)\)</span> where <span class="math inline">\(\pi_{\theta}(a | s)\)</span> is the probability of taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>.</p>
+<p>Therefore, the overall loss function for the PPO is defined as:<br>
+<span class="math inline">\(L(\theta) = L^{CLIP}(\theta) - c_1 L^{VF}(\theta) + c_2 L^{ENT}(\theta)\)</span><br>
+where <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are the hyperparameters that determine the weight of the value loss function and entropy loss function in the overall loss function.</p>
+</section>
+</section>
+<section id="kl-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="kl-divergence"><strong>KL Divergence</strong></h2>
+<p>KL Divergence is an alternative to the clipped surrogate objective function, which introduces a constraint on the policy updates by regularizing and ensuring that the KL divergence remains within a certain threshold. The expression for the KL divergence is defined as:<br>
+<span class="math inline">\(L^{KL}(\theta) = \mathbb{E}_{t} [\frac{\pi_{\theta_{online}}(a_t | s_t)}{\pi_{\theta_{offline}}(a_t | s_t)} \hat{A}_t - \beta KL(\pi_{\theta_{offline}}(a_t | s_t) || \pi_{\theta_{online}}(a_t | s_t))]\)</span><br>
+where <span class="math inline">\(\beta\)</span> is the hyperparameter that determines the weight of the KL divergence in the overall loss function. The KL divergence ensures that the policy updates are small and stable by regularizing the policy updates and preventing the policy from deviating too far from the offline policy.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>In this blog post, we discussed the limitations of the Policy Gradient Optimization (PGO) and how we can address these limitations using the Off-Policy Learning technique. We also discussed the Reward Model, the dataset for training the reward model, the loss function for the reward model, and the importance of the reward model in training large language models. We then discussed the Proximal Policy Optimization (PPO) technique, the clipped surrogate objective function, the value function estimation, the overall loss function for the PPO, and the KL divergence. We also discussed the importance of the entropy loss function in the overall PPO loss and how it encourages the policy to explore more options and prevent it from getting stuck in a local optima.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<ol type="1">
+<li>Stiennon, N., Ouyang, L., Wu, J., Ziegler, D. M., Lowe, R., Voss, C., Radford, A., Amodei, D., &amp; Christiano, P. (2020). Learning to summarize from human feedback. ArXiv. /abs/2009.01325</li>
+<li>Zheng, R., Dou, S., Gao, S., Hua, Y., Shen, W., Wang, B., Liu, Y., Jin, S., Liu, Q., Zhou, Y., Xiong, L., Chen, L., Xi, Z., Xu, N., Lai, W., Zhu, M., Chang, C., Yin, Z., Weng, R., . . . Huang, X. (2023). Secrets of RLHF in Large Language Models Part I: PPO. ArXiv. /abs/2307.04964</li>
+<li>Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp; Riedmiller, M. (2013). Playing Atari with Deep Reinforcement Learning. ArXiv. /abs/1312.5602</li>
+<li>Li, Y. (2018). Deep Reinforcement Learning. ArXiv. /abs/1810.06339</li>
+<li><a href="https://youtu.be/qGyFrqc34yc?si=cOgbI5qslTJ2JFes">Reinforcement Learning from Human Feedback explained with math derivations and the PyTorch code.</a></li>
+<li><a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html">Intro to Policy Optimization</a></li>
+<li><a href="https://karpathy.github.io/2016/05/31/rl/">Deep Reinforcement Learning: Pong from Pixels</a></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

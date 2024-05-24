@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thinam Tamang">
+<meta name="dcterms.date" content="2024-03-31">
+
+<title>Welcome to my blog! - Introduction to Reinforcement Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"> <i class="bi bi-gear-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Introduction to Reinforcement Learning</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Reinforcement Learning</div>
+                <div class="quarto-category">Deep Learning</div>
+                <div class="quarto-category">RLHF</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 31, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>I am going to write a series of posts on Reinforcement Learning. This post is the first post in the series. In this post, I will introduce the basic concepts of Reinforcement Learning.</p>
+<section id="what-is-reinforcement-learning" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-reinforcement-learning"><strong>What is Reinforcement Learning?</strong></h2>
+<p>Reinforcement Learning is a technique in machine learning that enables an <strong>agent</strong> to learn how to behave in an environment by performing actions and observing the rewards. The <strong>agent</strong> learns to achieve a goal by interacting with the environment. The <strong>agent</strong> learns by trial and error, and the goal is to maximize the cumulative reward.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="RL.png" alt="" width="500">
+<p style="text-align: center;">
+Fig a. An agent interactivng with environment
+</p>
+</div>
+<p>In the above figure, the <strong>agent</strong> at state <span class="math inline">\(s\)</span> takes an action <span class="math inline">\(a\)</span> on the given <strong>environment</strong>. The <strong>environment</strong> returns the reward <span class="math inline">\(r\)</span> and the next state <span class="math inline">\(s'\)</span> based on the action performed at the given state <span class="math inline">\(s\)</span>. The <strong>agent</strong> learns from the reward and the next state and takes the next action in such a way that it maximizes the cumulative reward.</p>
+<section id="state-action-reward-transition-probability-discounted-reward-trajectory" class="level3">
+<h3 class="anchored" data-anchor-id="state-action-reward-transition-probability-discounted-reward-trajectory"><strong>State, Action, Reward, Transition Probability, Discounted Reward &amp; Trajectory</strong></h3>
+<p>An RL agent interacts with the environment over time. At each time step <span class="math inline">\(t\)</span>, the agent receives a state <span class="math inline">\(s_t\)</span> in a state space <span class="math inline">\(S\)</span>, and selects an action <span class="math inline">\(a_t\)</span> from an action space <span class="math inline">\(A\)</span>, following a policy <span class="math inline">\(\pi(a_t|s_t)\)</span>, which is the agent’s strategy for selecting actions or mapping from state <span class="math inline">\(s_t\)</span> to action <span class="math inline">\(a_t\)</span>. The agent receives a scalar reward <span class="math inline">\(r_t\)</span>, and transitions to the next state <span class="math inline">\(s_{t+1}\)</span> according to the environment’s dynamics. The environment’s dynamics are defined by the transition probability <span class="math inline">\(P(s_{t+1}|s_t, a_t)\)</span>, which is the probability of transitioning to state <span class="math inline">\(s_{t+1}\)</span> given that the agent was in state <span class="math inline">\(s_t\)</span> and took action <span class="math inline">\(a_t\)</span>. The agent’s goal is to learn a policy <span class="math inline">\(\pi\)</span> that maximizes the expected cumulative reward, which is the sum of rewards over time, typically with a discount factor <span class="math inline">\(\gamma\)</span> to give more weight to immediate rewards.</p>
+<p>In Reinforcement Learning, the agent is interacting with the <strong>environment</strong>. <strong>Environment</strong> is a system or a model that defines how the agent should interact or take actions to move from one state to another state. <strong>State</strong> (<span class="math inline">\(s \epsilon S\)</span>) is the current situation or characteristics of the agent in the environment. <strong>Action</strong> (<span class="math inline">\(a \epsilon A\)</span>) is the decision taken by the agent at the given state. <strong>Reward</strong> (<span class="math inline">\(r\)</span>) is the feedback from the environment based on the action taken by the agent. <strong>Transition Probability</strong> <span class="math inline">\(P(s'|s,a)\)</span> is the probability of moving from state <span class="math inline">\(s\)</span> to state <span class="math inline">\(s'\)</span> by taking action <span class="math inline">\(a\)</span>. <strong>Discounted Reward</strong> is the reward that is discounted by a factor <span class="math inline">\(\gamma\)</span> and it is used to give more importance to the immediate reward than the future reward.</p>
+<p>A <strong>trajectory</strong> is a sequence of states, actions, and rewards that the agent encounters while interacting with the environment. The trajectory is denoted by <span class="math inline">\(\tau = (s_0, a_0, r_0, s_1, a_1, r_1, s_2, a_2, r_2, ...)\)</span>.</p>
+</section>
+<section id="policy" class="level3">
+<h3 class="anchored" data-anchor-id="policy"><strong>Policy</strong></h3>
+<p>A policy which is denoted by <span class="math inline">\(\pi\)</span> is a mapping from states to actions that tells the agent what action to take in a given state. The policy can be deterministic or stochastic. A <strong>deterministic policy</strong> is a direct mapping from states to actions, while <strong>stochastic policy</strong> is a probability distribution over actions given states.</p>
+<p>A policy maps a state to an action, or, a distribution over actions, and policy optimization is the process of finding the optimal mapping. Value based methods optimize the value function first, then derive the optimal policies. Policy based methods optimize the objective function directly, or usually the cumulative rewards.</p>
+<p>The objective of the agent is to find the optimal policy <span class="math inline">\(\pi^*\)</span> that maximizes the cumulative discounted reward. Mathematically, the objective is given by: <span class="math inline">\(\displaystyle\sum_{t&gt;0} \gamma r_t\)</span></p>
+</section>
+<section id="value-funtion" class="level3">
+<h3 class="anchored" data-anchor-id="value-funtion"><strong>Value Funtion</strong></h3>
+<p>The value function is a function that estimates the expected cumulative reward that the agent can achieve by following a policy <span class="math inline">\(\pi\)</span> from a given state <span class="math inline">\(s\)</span>. The value function is denoted by <span class="math inline">\(V^{\pi}(s)\)</span> and it is defined as the expected cumulative reward that the agent can achieve by following a policy <span class="math inline">\(\pi\)</span> from a given state <span class="math inline">\(s\)</span>. The value function is defined as: <span class="math inline">\(V^{\pi}(s) = E_{\pi}[ \displaystyle\sum_{t&gt;0} \gamma^t r_t | s_0 = s,\pi ]\)</span></p>
+</section>
+<section id="q-value-function" class="level3">
+<h3 class="anchored" data-anchor-id="q-value-function"><strong>Q-Value Function</strong></h3>
+<p>The Q-value function is a function that estimates the expected cumulative reward that the agent can achieve by taking action <span class="math inline">\(a\)</span> at state <span class="math inline">\(s\)</span> and following a policy <span class="math inline">\(\pi\)</span> thereafter. The Q-value function is denoted by <span class="math inline">\(Q^{\pi}(s,a)\)</span> and it is defined as the expected cumulative reward that the agent can achieve by taking action <span class="math inline">\(a\)</span> at state <span class="math inline">\(s\)</span> and following a policy <span class="math inline">\(\pi\)</span> thereafter. The Q-value function is defined as: <span class="math inline">\(Q^{\pi}(s,a) = E_{\pi}[ \displaystyle\sum_{t&gt;0} \gamma^t r_t | s_0 = s, a_0 = a,\pi ]\)</span></p>
+<p>The optimal Q-value function is denoted by <span class="math inline">\(Q^*(s,a)\)</span> and it is defined as the maximum expected cumulative reward that the agent can achieve by taking action <span class="math inline">\(a\)</span> at state <span class="math inline">\(s\)</span> and following the optimal policy <span class="math inline">\(\pi^*\)</span> thereafter. The optimal Q-value function is defined as: <span class="math inline">\(Q^*(s,a) = maxE_{\pi^*}[ \displaystyle\sum_{t&gt;0} \gamma^t r_t | s_0 = s, a_0 = a,\pi^* ]\)</span></p>
+</section>
+</section>
+<section id="q-learning" class="level2">
+<h2 class="anchored" data-anchor-id="q-learning"><strong>Q-Learning</strong></h2>
+<p>The optimal Q-value function as known as the optimal action-value function obeys the <strong>Bellman Equation</strong>. The Bellman Equation is based on the intuition that if the optimal action-value function <span class="math inline">\(Q^*(s', a')\)</span> of the sequence of states <span class="math inline">\(s'\)</span> and the next time step is known for all possible actions <span class="math inline">\(a'\)</span>, then the optimal action-value function <span class="math inline">\(Q^*(s,a)\)</span> of the current state <span class="math inline">\(s\)</span> and the current action <span class="math inline">\(a\)</span> can be calculated. The Bellman Equation is given by: <span class="math inline">\(Q^*(s,a) = E_{s',r}[r + \gamma max_{a'} Q^*(s',a') | s,a]\)</span>.</p>
+<p>The <strong>Q-Learning</strong> algorithm is based on the Bellman Equation and it is used to estimate the optimal Q-value function <span class="math inline">\(Q^*(s,a)\)</span> by iteratively updating the Q-value function <span class="math inline">\(Q(s,a)\)</span> using the Bellman Equation such that:<br>
+<span class="math inline">\(Q_{i+1}(s,a) = E[ r + \gamma max_{a'} Q_i(s',a') | s,a]\)</span>.<br>
+<span class="math inline">\(Q_{i+1}(s,a) = Q_i(s,a) + \alpha (r + \gamma max_{a'} Q_i(s',a') - Q_i(s,a))\)</span>.</p>
+<p>In practice, this approach is totally impractical because the action-value function is estimated separately for each state-action pair without generalizing the knowledge across states. Instead, we use a function approximator to estimate the Q-value function: <span class="math inline">\(Q^*(s,a) \approx Q(s,a;\theta)\)</span> which introduces <strong>Deep Q-Network (DQN)</strong>.</p>
+<section id="implementation-of-q-learning" class="level4">
+<h4 class="anchored" data-anchor-id="implementation-of-q-learning"><strong>Implementation of Q-Learning</strong></h4>
+<p>You can see my implementation of Q-Learning in this <a href="https://github.com/ThinamXx/reinforcement-learning/blob/main/examples/q-learning.ipynb">notebook</a>. In this notebook, I have implemented the Q-Learning algorithm to solve the Desert Navigation problem. The agent is thirsty and it needs to find the water in the 2D grid world. The agent can move in four directions: up, down, left, and right. In this notebook, the agent learns to find the water by taking actions and observing the rewards. The agent learns to find the water by maximizing the cumulative reward.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="SE.png" alt="" width="300">
+<p style="text-align: center;">
+Fig a. Agent wants to navigate to the bottom right corner of the grid.
+</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># defining the state environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> State:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, grid, agent_pos):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grid <span class="op">=</span> grid</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.agent_pos <span class="op">=</span> agent_pos</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__eq__</span>(<span class="va">self</span>, other):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">isinstance</span>(other, State)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> <span class="va">self</span>.grid <span class="op">==</span> other.grid</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="kw">and</span> <span class="va">self</span>.agent_pos <span class="op">==</span> other.agent_pos</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__hash__</span>(<span class="va">self</span>):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">hash</span>(<span class="bu">str</span>(<span class="va">self</span>.grid) <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.agent_pos))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"State(grid=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>grid<span class="sc">}</span><span class="ss">, agent_pos=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>agent_pos<span class="sc">}</span><span class="ss">)"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># defining the actions and the rewards</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> act(state, action):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> new_agent_pos(state, action)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    grid_item <span class="op">=</span> state.grid[p[<span class="dv">0</span>]][p[<span class="dv">1</span>]]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    new_grid <span class="op">=</span> deepcopy(state.grid)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> grid_item <span class="op">==</span> DESERT:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        reward <span class="op">=</span> <span class="op">-</span><span class="dv">100</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        is_done <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        new_grid[p[<span class="dv">0</span>]][p[<span class="dv">1</span>]] <span class="op">+=</span> AGENT</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> grid_item <span class="op">==</span> WATER:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        reward <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        is_done <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        new_grid[p[<span class="dv">0</span>]][p[<span class="dv">1</span>]] <span class="op">+=</span> AGENT</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> grid_item <span class="op">==</span> EMPTY:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        reward <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        is_done <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        old <span class="op">=</span> state.agent_pos</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        new_grid[old[<span class="dv">0</span>]][old[<span class="dv">1</span>]] <span class="op">=</span> EMPTY</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        new_grid[p[<span class="dv">0</span>]][p[<span class="dv">1</span>]] <span class="op">=</span> AGENT        </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> grid_item <span class="op">==</span> AGENT:</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        reward <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        is_done <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Unknown grid item </span><span class="sc">{</span>grid_item<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> State(grid<span class="op">=</span>new_grid, agent_pos<span class="op">=</span>p), reward, is_done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># agent learns using Q-Learning</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(N_EPISODES):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> start_state</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    total_reward <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> alphas[e]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(MAX_EPISODE_STEPS):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        action <span class="op">=</span> choose_action(state)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        next_state, reward, done <span class="op">=</span> act(state, action)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        total_reward <span class="op">+=</span> reward</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        q(state)[action] <span class="op">=</span> q(state, action) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                alpha <span class="op">*</span> (reward <span class="op">+</span> gamma <span class="op">*</span>  np.<span class="bu">max</span>(q(next_state)) <span class="op">-</span> q(state, action))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        state <span class="op">=</span> next_state</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> done:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Episode </span><span class="sc">{</span>e <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">: total reward -&gt; </span><span class="sc">{</span>total_reward<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="deep-q-network-dqn" class="level3">
+<h3 class="anchored" data-anchor-id="deep-q-network-dqn"><strong>Deep Q-Network (DQN)</strong></h3>
+<p>Deep Q-Network (DQN) is a neural network (non-linear function approximator) that is used to estimate the action-value function <span class="math inline">\(Q(s,a;\theta)\)</span> in Q-Learning with weights given by <span class="math inline">\(\theta\)</span>. The DQN is trained to minimize the loss function given by: <span class="math inline">\(L_i(\theta_i) = E_{s,a \sim \rho(.)} [(y_i - Q(s,a;\theta_i))^2]\)</span>, where <span class="math inline">\(y_i = E_{s' \sim \epsilon} [r + \gamma max_{a'} Q(s',a';\theta_{i-1}) | s,a]\)</span> is the target value for iteration <span class="math inline">\(i\)</span> and <span class="math inline">\(\rho(s, a)\)</span> is a probability distribution over states and actions which is also known as the behavior distribution. The parameters from the previous iteration <span class="math inline">\(\theta_{i-1}\)</span> are held fixed while optimizing the loss function <span class="math inline">\(L_i(\theta_i)\)</span>.</p>
+<p>When differentiating the loss function <span class="math inline">\(L_i(\theta_i)\)</span> with respect to the weights <span class="math inline">\(\theta_i\)</span>, the gradient of the loss function is given by: <span class="math inline">\(\nabla_{\theta_i} L_i(\theta_i) = E_{s,a \sim \rho(.); s' \sim \epsilon} [(r + \gamma max_{a'} Q(s',a';\theta_{i-1}) - Q(s,a;\theta_i)) \nabla_{\theta_i} Q(s,a;\theta_i)]\)</span>. The gradient of the loss function is used to update the weights <span class="math inline">\(\theta_i\)</span> using the gradient descent algorithm.</p>
+<p>The <strong>Deep Q-Network (DQN)</strong> algorithm is a model-free: it solves the reinforcement learning task directly using the samples from the environment, without explicitly estimating the transition probability. It is an off-policy algorithm: it learns about the greedy policy <span class="math inline">\(a = argmax_{a} Q(s,a;\theta)\)</span> while following the behavior distribution <span class="math inline">\(\rho(s,a)\)</span>.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="DQN.png" alt="" width="700">
+<p style="text-align: center;">
+Fig b. Deep Q-Network algorithm taken from <a href="https://arxiv.org/abs/1312.5602" target="_blank">Mnih et al.</a>
+</p>
+</div>
+<p>Deep Q-Networks make a big leap in the field of Reinforcement Learning by showing that Q-Learning with a non-linear function approximation, in particular, deep convolutional neural networks, can achieve outstanding results on a wide range of Atari games.</p>
+<section id="double-dqn" class="level4">
+<h4 class="anchored" data-anchor-id="double-dqn"><strong>Double DQN</strong></h4>
+<p>In standard Q-Learning, and in DQN, the parameters are updated as follows:<br>
+<span class="math inline">\(\theta_{i+1} = \theta_i + \alpha (y_i - Q(s_i,a_i;\theta_i)) \nabla_{\theta_i} Q(s_i,a_i;\theta_i)\)</span><br>
+where <span class="math inline">\(y_i = r + \gamma max_{a'} Q(s_{i+1}',a_i';\theta_{i-1})\)</span>.</p>
+<p>The problem with this approach is that the Q-values are overestimated because the same values are used to select and evaluate an action. So, the Double DQN algorithm proposes to evaluate the greedy policy according to the online network, but to use the target network to estimate its value. This can be achieved by:<br>
+<span class="math inline">\(\theta_{i+1} = \theta_i + \alpha (y_i - Q(s_i,a_i;\theta_i)) \nabla_{\theta_i} Q(s_i,a_i;\theta_i)\)</span><br>
+where <span class="math inline">\(y_i = r_{i+1} + \gamma Q(s_{i+1}',argmax_{a'} Q(s_{i+1}',a';\theta_i);\theta_{i-1})\)</span>.</p>
+</section>
+<section id="dueling-dqn-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="dueling-dqn-architecture"><strong>Dueling DQN Architecture</strong></h4>
+<p>Dueling DQN architecture propse the dueling network architecture to estimate the state value function <span class="math inline">\(V(s)\)</span> and the associated advantage function <span class="math inline">\(A(s,a)\)</span> and then combine them to estimate the action-value function <span class="math inline">\(Q(s,a)\)</span> to converge faster than Q-Learning. In DQN, a CNN Layer is followed by a fully connected layer but in Dueling DQN, a CNN Layer is followed by two streams of fully connected layers: one for the state value function <span class="math inline">\(V(s)\)</span> and the other for the advantage function <span class="math inline">\(A(s,a)\)</span>. The output of the two streams is combined to estimate the action-value function <span class="math inline">\(Q(s,a)\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>In this post, I have introduced the basic concepts of Reinforcement Learning. I have discussed the concepts of State, Action, Reward, Transition Probability, Discounted Reward, Trajectory, Policy, Value Function, Q-Value Function, Q-Learning, Deep Q-Network (DQN), Double DQN, and Dueling DQN.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<ol type="1">
+<li>Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp; Riedmiller, M. (2013). Playing Atari with Deep Reinforcement Learning. ArXiv. /abs/1312.5602</li>
+<li>Li, Y. (2018). Deep Reinforcement Learning. ArXiv. /abs/1810.06339</li>
+<li><a href="https://youtu.be/qGyFrqc34yc?si=cOgbI5qslTJ2JFes">Reinforcement Learning from Human Feedback explained with math derivations and the PyTorch code.</a></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

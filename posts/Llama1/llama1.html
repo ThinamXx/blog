@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thinam Tamang">
+<meta name="dcterms.date" content="2024-01-20">
+
+<title>Welcome to my blog! - LLaMA: Open and Efficient LLM Notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"> <i class="bi bi-gear-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">LLaMA: Open and Efficient LLM Notes</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">llama</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 20, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>In this article, I will be sharing the notes and concepts which I have learned while reading the papers and while discussing with <a href="https://www.youtube.com/@umarjamilai">Umar</a>. The ultimate goal that I have on my mind is to build <strong>Llama 2</strong> from scratch.</p>
+<p><img src="./llama.png" class="img-fluid"> Figure 1: The Llama2 architecture prepared by Umar Jamil.</p>
+<p>The <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> is the first paper that I read on this journey. This paper introduces the Transformer architecture, which is the architecture used in <strong>Llama</strong>.</p>
+<section id="why-was-the-transformer-architecture-introduced" class="level4">
+<h4 class="anchored" data-anchor-id="why-was-the-transformer-architecture-introduced"><strong>Why was the Transformer architecture introduced?</strong></h4>
+<p>The Transformer architecture was introduced to resolve the issues on <strong>Recurrent Neural Networks (RNNs)</strong>. RNNs are sequential in nature, which means that the hidden state of a token depends on the hidden state of the previous token in the sequence. This makes RNNs not <em>parallelizable</em>. RNNs are not suitable for capturing long-range dependencies in a sequence. The Transformer architecture is <em>parallelizable</em> because it uses the attention mechanism to capture the relationships between tokens in a sequence. Since, we use dot products to calculate the attention, we can parallelize the calculations of the attention.</p>
+<p>I have an article that explains the fundamentals terms and concepts of the <strong>Transformer</strong> architecture. You can read it <a href="https://thinamxx.github.io/thinam.github.io/posts/Attention/Transformer.html">here</a>.</p>
+</section>
+<section id="why-do-we-need-positional-encodings-which-component-of-the-transformer-architecture-uses-positional-encodings" class="level4">
+<h4 class="anchored" data-anchor-id="why-do-we-need-positional-encodings-which-component-of-the-transformer-architecture-uses-positional-encodings"><strong>Why do we need Positional Encodings? Which component of the Transformer architecture uses positional encodings?</strong></h4>
+<p>In the transformer architecture, we convert the tokens in a sequence to embedding vectors. The embedding vectors (encoded with position inforamtion) are then fed to the encoder and decoder. The encoder block contains multi-head attention and feed-forward layers. The decoder block contains masked multi-head attention, multi-head attention and feed-forward layers. The embedding vectors does not contain any information about the <em>position</em> of the tokens in the sequence. The learned positional encodings are added to the embedding vectors to give information about the position of the tokens in the sequence. The positional encodings are added to the embedding vectors before they are fed to the encoder and decoder blocks. If we do not add positional encodings to the embedding vectors, each unique token will have the same embedding vector irrespective of its position in the sequence.</p>
+<p><img src="PE.png" class="img-fluid"> Figure 2: Positional Encodings</p>
+<p>The attention mechanism is used to capture the relationships between tokens in a sequence so that, the position encodings are used by the self-attention layer of the transformer architecture.</p>
+</section>
+<section id="why-the-multi-head-attention-in-decoder-block-of-the-transformer-architecture-is-called-cross-attention" class="level4">
+<h4 class="anchored" data-anchor-id="why-the-multi-head-attention-in-decoder-block-of-the-transformer-architecture-is-called-cross-attention"><strong>Why the multi-head attention in decoder block of the Transformer architecture is called cross-attention?</strong></h4>
+<p>The multi-head attention in the decoder block of the Transformer architecture is called <strong>cross-attention</strong> because it uses the encoder output only as the key and value vectors. The query vectors are the output of the masked multi-head attention layer of the decoder block. The masked multi-head attention layer is used to prevent the decoder from attending to future tokens in the sequence. The cross-attention layer is used to capture the relationships between the tokens in the input sequence and the tokens in the output sequence.</p>
+<p>In the Transformer architecture, the length of <em>queries</em>, <em>keys</em>, and <em>values</em> vectors are not always same but the embedding dimension should always same becuase we use dot product to calculate the attention. But the length of keys and values vectors are always same.</p>
+<p>Then, I read the <a href="https://arxiv.org/abs/1910.07467">Root Mean Square Layer Normalization</a> because RMSNorm normalizing function was used in Llama architecture.</p>
+</section>
+<section id="what-is-the-difference-between-layernorm-and-rmsnorm" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-the-difference-between-layernorm-and-rmsnorm"><strong>What is the difference between LayerNorm and RMSNorm?</strong></h4>
+<p>LayerNorm is the normalization technique that is used in the Transformer architecture which stabilizes the training of any neural networks by regularizing neuron dynamics via mean and variance statistics. The vanilla neural networks might suffer from <em>internal covariate shift</em> problem, where a layer’s input distribution changes as the previous layers are updated. This could negatively affect the stability of parameters gradient calculation delaying model convergence. To reduce this shift, LayerNorm normalizes the summed inputs so as to fix their mean and variance to 0 and 1 respectively.</p>
+<p><img src="LayerN.png" class="img-fluid"> Figure 3: Layer Normalization &amp; Root Mean Square Normalization</p>
+<p>LayerNorm has re-centering and re-scaling invariance properties where the former property enables the model to be insensitive to shift noises on both inputs and weights, and the latter property keeps the output representations intact when both the inputs and weights are randomly scaled. RMSNorm only focuses on re-scaling invariance and regularizes the summed inputs simply by Root Mean Square (RMS) statistics.</p>
+<p><img src="RMS.png" class="img-fluid"></p>
+<p>Since, RMSNorm doesn’t require the calculation of mean static, it is computationally efficient and accelerates the running speed.</p>
+<p>After that, I read the <a href="https://arxiv.org/abs/2002.05202">GLU Variants Improve Transformer</a> because the Llama architecture replace the ReLU non-linearity from FeedForward block with SwiGLU activation function to improve the performance.</p>
+<p>In the Transformer architecture, there are two layers: multi-head attention and position-wise feedforward networks (FFN). The <em>FFN</em> takes a vector <code>x</code> which is the hidden representation at a particular position in the sequence and passes it through two learned linear transformmations with a non-linear activation function in between.</p>
+<p>The Llama architecture uses SwiGLU activation function instead of ReLU activation function in the FFN block. SwiGLU is a variant of GLU activation function that uses 3 matrices and has no computational overhead.</p>
+<p><img src="Swi.png" class="img-fluid"> Figure 4: SwiGLU activation function</p>
+<p>After that, I read the <a href="https://arxiv.org/abs/2104.09864">RoFormer: Enhanced Transformer with Rotary Position Embedding</a> because the Llama architecture uses Rotary Position Embedding (RoPE) to encode the positional information to the attention mechanism instead of using the learned absolute positional encodings as done in the original Transformer architecture.</p>
+</section>
+<section id="rotary-position-embedding-rope" class="level4">
+<h4 class="anchored" data-anchor-id="rotary-position-embedding-rope"><strong>Rotary Position Embedding (RoPE)</strong></h4>
+<p>Rotary Position Embedding encodes the absolute position with the rotation matrix and naturally incorporates the explicit relative position dependency into the self-attention mechanism. After we multiply the input embedding with parameterized matrices, the two embedding vectors which correspond to query and key is converted into a complex number representation. Then, the complex number is represented as a multiplication matrix which will contain the rotation matrix and weight matrices. The rotation matrix is used to encode the absolute position information because the degree of rotation is proportional to the position of the token in the sequence. Then we calculate the inner product of the rotated query and key vectors to calculate the attention scores which incorporates the relative position information and the inner product of query and key embedding vectors only depends on the distance between them.</p>
+<p><img src="RPE.png" class="img-fluid"> Figure 5: Multiplication Matrix of RoPE</p>
+<p>Rotary Position Embedding uses a rotation matrix to encode positional information to the attention rather than adding absolute position encoding vectors to the queries and keys as done in relative positional embedding which resolves the essence of extra computation as well. RoPE uses the concept of complex numbers and Euler’s formula to encode positional information to the attention mechanism.</p>
+<p><img src="RPE1.png" class="img-fluid"> Figure 6: Rotary Position Embedding</p>
+<p><strong>Absolute Positional Encodings Vs Relative Positional Encodings</strong> - Absolute positional encodings are fixed vectors that are added to the embedding vectors of a token to represent its absolute position in the sentence. So, it deals with one token at a time. You can think of it as the pair (lantitue, longitude) on a map: each point on earth has a unique pair of coordinates. - Relative positional encodings, on the other hand, deals with two tokens at a time and it is involved when we calculate the attention: since the attention mechanism captures the “intensity” of how two words are related to each other, relative postional encodings tell the attention mechanism the distance between two words involved in it. So, give two tokens, we create a vector that represents the distance between them. Relative positional encodings were introduced in the paper “Self-Attention with Relative Position Representations” by Shaw et al.&nbsp;(2018)“.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

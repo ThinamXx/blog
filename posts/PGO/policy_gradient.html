@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.547">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thinam Tamang">
+<meta name="dcterms.date" content="2024-04-14">
+
+<title>Welcome to my blog! - Policy Gradient Optimization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog!</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Thinam Tamang</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/thinam-tamang/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ThinamXx"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linktr.ee/Thinam"> <i class="bi bi-gear-fill" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/thinam_"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Policy Gradient Optimization</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Reinforcement Learning</div>
+                <div class="quarto-category">PGO</div>
+                <div class="quarto-category">RLHF</div>
+                <div class="quarto-category">LLMs</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thinam Tamang </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 14, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>This blog is the continuation of my previous blog, <a href="https://thinamxx.github.io/blog/posts/RL/intro_to_rl.html">Introduction to Reinforcement Learning</a>. In this blog, we will discuss the concept of Policy Gradient algorithm in the context of Reinforcement Learning. We will also derive the expression for the gradient of the objective function w.r.t the policy parameters and discuss the intuition behind the Policy Gradient algorithm. We will also show the practical implementation of training the agent using the Policy Gradient algorithm.</p>
+<section id="gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent"><strong>Gradient Descent</strong></h2>
+<p>To understand the Gradient Descent, we first need to understand the concept of a gradient. Slope is the rate of change of a vertical variable w.r.t the horizontal variable i.e.&nbsp;the ratio of vertical distance to horizontal distance. Derivative is the instantaneous rate of change of the function at a point. In other words, the derivate of a function at a point is the slope of the tangent line where the point touches the curve of the function. Similarly, the <strong>gradient</strong> is the generalization of the derivative for the multi-variable functions. It represents the rate of change of the function w.r.t each variable. Mathematically, for the multi-variable function <span class="math inline">\(f(x_1, x_2, ..., x_n)\)</span>, the gradient is denoted by <span class="math inline">\(\nabla f\)</span> and is defined as the vector composed of partial derivatives of the function w.r.t each variable. For example, the gradient of the function <span class="math inline">\(f(x, y) = x^2 + y^2\)</span> is <span class="math inline">\(\nabla f = [2x, 2y]\)</span>.</p>
+<p>While training neural networks, we activate each neurons with parameterized weights along with some biases, then impose the sum of the output of each neurons by a non-linear activation functions like sigmoid or ReLU. At first, the values of the weights and biases are randomly initialized and the output of the network is also random which means the output of the model is far from the actual output. So, we need to use the <strong>cost function</strong> which basically tells how bad is the performance of our model. Mathematically, the cost function is the sum of the squared difference between the predicted output and the actual output. The sum is small when the model confidently gives the correct output but it’s large when it seems the model really doesn’t know what it’s giving. When we say the model is training, we are actually trying to minimize the cost function in such a way that the predicted output is as close as possible to the actual output. Then, we use the novel method called <strong>gradient descent</strong> to minimize the cost function as quickly as possible. In calculus, <strong>gradient</strong> of the function gives the direction of steepest ascent to increase the function quickly. The negative of the gradient gives the direction of the steepest descent to decrease the function quickly. The <strong>gradient</strong> of the cost function basically tells which weights and biases of which neuron matters the most. Therefore, <strong>gradient descent</strong> is the iterative optimization algorithm that minimizes the cost function w.r.t the parameters of the model by moving in the direction of the negative gradient of the cost function. The learning rate is the hyperparameter that controls the step size of the gradient descent algorithm.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="GD.png" alt="" width="500">
+<p style="text-align: center;">
+Fig a. Gradient Descent
+</p>
+</div>
+</section>
+<section id="loss-function" class="level2">
+<h2 class="anchored" data-anchor-id="loss-function"><strong>Loss Function</strong></h2>
+<p>In simple words, the <strong>cost function</strong> is the average of the <strong>loss function</strong> of all the available data points. The <strong>loss function</strong> tells that how bad is the performance of our model for each single data point.</p>
+<p>While training the neural networks, we try to optimize the model parameters i.e.&nbsp;weights and biases in such a way that we get the right weights and biases so that our model can give correct output. Let’s say we have a loss function for a single data point as <span class="math inline">\(L(y, \hat{y}) = (y - \hat{y})^2\)</span> where <span class="math inline">\(y\)</span> is the actual output and <span class="math inline">\(\hat{y}\)</span> is the predicted output, then we calculate the gradient of the loss function w.r.t the model parameters (weights and biases), we obtain the vector where each element of the vector tells how much the LF changes w.r.t the corresponding parameter. This gives us which parameter (weight or bias) matters the most to minimize the loss function. We repeat this process for all the data points with the objective to minimize the squared difference between the actual output and the predicted output. Therefore, the <strong>loss function</strong> is used to optimize the model parameters (weights and biases) in such a way that the model can give the correct output.</p>
+</section>
+<section id="objective-of-reinforcement-learning" class="level2">
+<h2 class="anchored" data-anchor-id="objective-of-reinforcement-learning"><strong>Objective of Reinforcement Learning</strong></h2>
+<p>In my previous blog, <a href="https://thinamxx.github.io/blog/posts/RL/intro_to_rl.html">Introduction to Reinforcement Learning</a>, I have explained the key concepts of RL. In the context of stochastic nature, <strong>policy</strong> is the mapping from states to actions that tells us what is the probability of taking an action given a current state in such a way that the agent receives the maximum reward from the environment. Therefore, the objective or the goal of the RL is to learn the best policy or probability distribution of actions that maximizes the expected reward when the agent acts according to the policy.</p>
+<p>Mathematically, if we consider the stochastic policy which is parameterized by <span class="math inline">\(\theta\)</span>, then the objective of the RL is to find the optimal policy that maximizes the expected reward: <span class="math inline">\(J(\theta) = E_{\tau \sim \pi_{\theta}}[R(\tau)]\)</span> where <span class="math inline">\(\tau\)</span> is the trajectory of the agent (sequence of states, actions, and rewards), <span class="math inline">\(\pi_{\theta}\)</span> is the policy parameterized by <span class="math inline">\(\theta\)</span> and <span class="math inline">\(R(\tau)\)</span> is the total reward of the trajectory. Therefore, <span class="math inline">\(J(\theta)\)</span> is the objective function that we want to maximize.</p>
+</section>
+<section id="policy-gradient" class="level2">
+<h2 class="anchored" data-anchor-id="policy-gradient"><strong>Policy Gradient</strong></h2>
+<p>As mentioned earlier, the goal of the RL is to maximize the expected reward of all the possible trajectories of the agent by learning the optimal policy. The <span class="math inline">\(J(\theta)\)</span> is the objective function that we want to maximize using the gradient ascent algorithm. In the context of DL, we use the <strong>stochastic gradient descent</strong> to minimize the loss function or overall cost function where we calculate the gradient of the loss function w.r.t the model parameters and move in the direction of the negative gradient to minimize the loss function. Similarly, in the context of RL, we use the <strong>policy gradient ascent</strong> to maximize the objective function where we calculate the gradient of the objective function w.r.t the policy parameters and move in the direction of the gradient to maximize the objective function. Mathematically, we will optimize the policy parameters using gradient ascent algorithm: <span class="math inline">\(\theta_{k+1} = \theta_k + \alpha \nabla_{\theta} J(\pi_{\theta} | \theta_k)\)</span> where <span class="math inline">\(\alpha\)</span> is the learning rate and <span class="math inline">\(\nabla_{\theta} J(\pi_{\theta} | \theta_k)\)</span> is the gradient of the objective function w.r.t the policy parameters.</p>
+<section id="intuition-behind-policy-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-behind-policy-gradient"><strong>Intuition behind Policy Gradient</strong></h3>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="PG.png" alt="" width="800">
+<p style="text-align: center;">
+Fig b. Policy Gradient Optimization in RL inspired by <a href="https://karpathy.github.io/2016/05/31/rl/" target="_blank">Andrej Karpathy’s blog.</a>
+</p>
+</div>
+<p>As shown in the Fig a, let’s say we have a standard ML architecture where we feed the input data to the neural network or model and we get the probabilities of the actions as (UP, DOWN, LEFT, and RIGHT) in this case. Do you remember that we always optimize the probability of the correct actions in the context of the supervised learning? But in the context of RL, we don’t have the correct actions to optimize, so we use the <strong>Policy Gradient</strong> algorithm in this scenario. After we get the probabilities of the actions, we sample an action from the probability distribution: e.g.&nbsp;suppose we sample the action UP, we will execute the action in the environment. At this point please note that we could immediately fill in the gradient of 1.0 for the action UP as we do in the supervised learning and find the gradient of the objective function that would encourage the agent to more likely take the action UP in the future. But the problem is that we don’t yet know whether the action UP is good or bad so we can’t fill in the gradient until we get the reward from the environment. Let’s say we end up getting the positive reward after taking the action UP, then we fill in the gradient of the action UP with 1.0 and move in the direction of the gradient to maximize the objective function. Similarly, if we get the negative reward after taking the action UP, then we fill in the gradient of the action UP with -1.0 and do the backpropagation to find the gradient of the objective function that would discourage the agent to take the action UP in the future. Therefore, we have a stochastic policy that samples the actions from the probability distribution, and the action that happen to be good is encouraged and the action that happen to be bad is discouraged. This is the intuition behind the Policy Gradient algorithm in the context of Reinforcement Learning and this is how the agent learns the optimal policy even without the correct actions or references.</p>
+<p>Derivation of the Policy Gradient taken from the <a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#deriving-the-simplest-policy-gradient">Policy Gradient Optimization blog</a>.</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<img src="PGO.png" alt="" width="500">
+<p style="text-align: center;">
+Fig c.&nbsp;Policy Gradient Optimization in RL
+</p>
+</div>
+<p>As shown in the Fig b, we derived the expression for the gradient of the objective function as <span class="math inline">\(\nabla_{\theta} J(\pi_{\theta}) = E_{\tau \sim \pi_{\theta}}[\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t | s_t) R(\tau)]\)</span> where <span class="math inline">\(\tau\)</span> is the trajectory of the agent, <span class="math inline">\(T\)</span> is the time horizon, <span class="math inline">\(a_t\)</span> is the action at time <span class="math inline">\(t\)</span>, <span class="math inline">\(s_t\)</span> is the state at time <span class="math inline">\(t\)</span>, <span class="math inline">\(\pi_{\theta}(a_t | s_t)\)</span> is the probability of taking the action <span class="math inline">\(a_t\)</span> given the state <span class="math inline">\(s_t\)</span>, and <span class="math inline">\(R(\tau)\)</span> is the total reward of the trajectory. This equation tells us that we should shift the distribution of the actions through the policy parameters <span class="math inline">\(\theta\)</span> if we wanted its sampled actions to achieve higher scores as judged by the reward <span class="math inline">\(R(\tau)\)</span>. Particularly, it means that we should take sample action <span class="math inline">\(a_t\)</span>, evaluate the log probability of the action <span class="math inline">\(\log \pi_{\theta}(a_t | s_t)\)</span>, use the gradient of the log probability <span class="math inline">\(\nabla_{\theta} \log \pi_{\theta}(a_t | s_t)\)</span> that gives us the direction in parameter space that would increase the probability of the action <span class="math inline">\(a_t\)</span> given the state <span class="math inline">\(s_t\)</span>.</p>
+<p>So, this is an expectation which means that we can estimate it with a sample mean. If we sample the trajectory <span class="math inline">\(\tau\)</span> from the policy <span class="math inline">\(\pi_{\theta}\)</span>, then we can estimate the gradient of the objective function as <span class="math inline">\(\nabla_{\theta} J(\pi_{\theta}) \approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t^i | s_t^i) R(\tau^i)\)</span> where <span class="math inline">\(N\)</span> is the number of trajectories sampled from the policy <span class="math inline">\(\pi_{\theta}\)</span>, <span class="math inline">\(a_t^i\)</span> is the action at time <span class="math inline">\(t\)</span> in the trajectory <span class="math inline">\(i\)</span>, <span class="math inline">\(s_t^i\)</span> is the state at time <span class="math inline">\(t\)</span> in the trajectory <span class="math inline">\(i\)</span>, and <span class="math inline">\(R(\tau^i)\)</span> is the total reward of the trajectory <span class="math inline">\(i\)</span>. Therefore, we can estimate the gradient of the objective function using the sample mean of the trajectories sampled from the policy <span class="math inline">\(\pi_{\theta}\)</span>.</p>
+</section>
+<section id="practical-implementation-of-training-the-agent-using-policy-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="practical-implementation-of-training-the-agent-using-policy-gradient"><strong>Practical Implementation of Training the Agent using Policy Gradient</strong></h3>
+<p>REINFORCE algorithm is the simplest form of the Policy Gradient algorithm that optimizes the policy parameters directly using the <strong>gradient ascent</strong>. The update method of the REINFORCE algorithm which is a part of this <a href="https://github.com/ThinamXx/reinforcement-learning/blob/main/policy_gradient.py">policy_gradient.py</a> script is shown below. We are using <em>-1</em> in the loss function to ensure that we are moving in the direction of the gradient while calling the <em>loss.backward()</em> method.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(<span class="va">self</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Update the policy network using the REINFORCE algorithm."""</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the discounted rewards.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    discounted_rewards <span class="op">=</span> []</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    cumulative_reward <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> reward <span class="kw">in</span> <span class="va">self</span>.rewards[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        cumulative_reward <span class="op">=</span> reward <span class="op">+</span> <span class="va">self</span>.gamma <span class="op">*</span> cumulative_reward</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        discounted_rewards.insert(<span class="dv">0</span>, cumulative_reward)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    discounted_rewards <span class="op">=</span> torch.tensor(discounted_rewards)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalize the discounted rewards.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    discounted_rewards <span class="op">=</span> (discounted_rewards <span class="op">-</span> discounted_rewards.mean()) <span class="op">/</span> (</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        discounted_rewards.std() <span class="op">+</span> <span class="va">self</span>.eps</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the loss.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> log_prob, discounted_reward <span class="kw">in</span> <span class="bu">zip</span>(<span class="va">self</span>.probs, discounted_rewards):</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">+=</span> (<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> log_prob.mean() <span class="op">*</span> discounted_reward</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update the policy network.</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.optimizer.zero_grad()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.optimizer.step()</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset the memory.</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.probs <span class="op">=</span> []</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.rewards <span class="op">=</span> []</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> loss.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>In this blog, we have discussed the concept of the Gradient Descent, Loss Function, and the Policy Gradient algorithm in the context of Reinforcement Learning. We have also derived the expression for the gradient of the objective function w.r.t the policy parameters and discussed the intuition behind the Policy Gradient algorithm. We have also shown the practical implementation of training the agent using the Policy Gradient algorithm. In the next blog, we will discuss the Proximal Policy Optimization (PPO) loss and other concepts in the context of Reinforcement Learning.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<ol type="1">
+<li>Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp; Riedmiller, M. (2013). Playing Atari with Deep Reinforcement Learning. ArXiv. /abs/1312.5602</li>
+<li>Li, Y. (2018). Deep Reinforcement Learning. ArXiv. /abs/1810.06339</li>
+<li><a href="https://youtu.be/qGyFrqc34yc?si=cOgbI5qslTJ2JFes">Reinforcement Learning from Human Feedback explained with math derivations and the PyTorch code.</a></li>
+<li><a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html">Intro to Policy Optimization</a></li>
+<li><a href="https://karpathy.github.io/2016/05/31/rl/">Deep Reinforcement Learning: Pong from Pixels</a></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

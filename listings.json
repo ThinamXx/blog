@@ -1,0 +1,29 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/EST/scaling.html",
+      "/posts/ORPO/orpo.html",
+      "/posts/PPO/ppo_loss.html",
+      "/posts/PGO/policy_gradient.html",
+      "/posts/RL/intro_to_rl.html",
+      "/posts/Mistral/mistral_long.html",
+      "/posts/MOE/mistral.html",
+      "/posts/MS/mistral.html",
+      "/posts/KV/kv.html",
+      "/posts/GQA/gqa.html",
+      "/posts/Llama1/llama1.html",
+      "/posts/Git & GitHub/Git.html",
+      "/posts/Attention/Transformer.html",
+      "/posts/WordVectors/WordVectors.html",
+      "/posts/DataEng/DataEngineering.html",
+      "/posts/Dataset/DataPreparation.html",
+      "/posts/Machine/MachineLearning.html",
+      "/posts/Pattern/Pattern.html",
+      "/posts/CNNs/CNNs.html",
+      "/posts/NeuralNetworks/CNN.html",
+      "/posts/ClassifyImage/Fundamentals.html",
+      "/posts/NLP/NLP.html"
+    ]
+  }
+]
