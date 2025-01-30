@@ -1,3 +1,10 @@
+---
+title: "Online Softmax: A Comprehensive Guide"
+author: "Thinam Tamang"
+categories: [softmax]
+date: "2025-1-29"
+---
+
 ## 1. Introduction to Multi-Head Attention  
 At first, we need to understand the multi-head attention mechanism. In the Transformer model, the **attention mechanism** is used to capture the relationship between all the tokens in the input sequence along with its positional information. The attention mechanism is the key algorithm behind the success of the Transformer model. In the following figure, the attention mechanism is computed by the following formula:  
 
@@ -214,6 +221,52 @@ for i in range(N):
 # compute the softmax of the row.
 for k in range(N):
     y[k] = exp(x[k] - m_N) / l_N
+```
+
+### 3.3. Implementation of Online Softmax
+Let's now implement the original softmax with 3-pass as well as the online softmax with 2-pass in Python. 
+
+```python
+def original_softmax(x):
+    """Traditional 3-pass implementation of softmax."""
+
+    # 1. compute the maximum value of the row.
+    m_n = float("-inf")
+    for val in x:
+        m_n = max(m_n, val)
+
+    # 2. compute the normalization factor.
+    l_n = 0
+    for val in x:
+        l_n += np.exp(val - m_n)
+
+    # 3. compute the softmax values.
+    output = np.zeros_like(x)
+    for i, val in enumerate(x):
+        output[i] = np.exp(val - m_n) / l_n
+
+    return output
+
+
+def online_softmax(x):
+    """Online (2-pass) implementation of softmax."""
+
+    # 1. compute the maximum value and the normalization factor.
+    m_prev = float("-inf")
+    l_prev = 0
+
+    for val in x:
+        m_curr = max(m_prev, val)
+        l_curr = l_prev * np.exp(m_prev - m_curr) + np.exp(val - m_curr)
+        m_prev = m_curr
+        l_prev = l_curr
+
+    # 2. compute the final softmax values.
+    output = np.zeros_like(x)
+    for i, val in enumerate(x):
+        output[i] = np.exp(val - m_prev) / l_prev
+
+    return output
 ```
 
 ### **Conclusion**
