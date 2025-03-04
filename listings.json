@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Softmax/softmax.html",
       "/posts/EST/scaling.html",
       "/posts/ORPO/orpo.html",
       "/posts/PPO/ppo_loss.html",
